@@ -1,18 +1,18 @@
-import React from "react"
-import Link from "@components/Link"
-import Logo from "@components/Logo"
-import { Moon, Sun, Rss } from "react-feather"
-import { useTheme } from "next-themes"
-import { useIsMounted } from "../hooks/useIsMounted"
-import { useRouter } from "next/router"
-import { cn } from "../utils"
+import React from "react";
+import Link from "@components/Link";
+import Logo from "@components/Logo";
+import { Moon, Sun, Rss } from "react-feather";
+import { useTheme } from "next-themes";
+import { useIsMounted } from "../hooks/useIsMounted";
+import { useRouter } from "next/router";
+import { cn } from "../utils";
 
 const Nav: React.FC = () => {
-  const { theme, setTheme } = useTheme()
-  const isMounted = useIsMounted()
-  const { asPath } = useRouter()
+  const { theme, setTheme } = useTheme();
+  const isMounted = useIsMounted();
+  const { asPath } = useRouter();
 
-  const isBlogPage = asPath.includes("/p/")
+  const isBlogPage = asPath.includes("/p/");
 
   return (
     <div className="px-5 md:px-8">
@@ -30,14 +30,14 @@ const Nav: React.FC = () => {
         <div className="text-gray-600 flex items-center space-x-6">
           <Link
             className="text-sm hover:text-pink-600"
-            href="https://railway.app"
+            href="https://alexandrie.app"
           >
-            Go to Homepage
+            Accueil
           </Link>
 
           <button
             className="hover:text-pink-600"
-            onClick={() => window.open("https://blog.railway.app/rss.xml")}
+            onClick={() => window.open("https://blog.alexandrie.app/rss.xml")}
           >
             <Rss size={16} />
           </button>
@@ -53,7 +53,7 @@ const Nav: React.FC = () => {
         </div>
       </nav>
     </div>
-  )
-}
+  );
+};
 
-export default Nav
+export default Nav;

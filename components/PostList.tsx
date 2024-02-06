@@ -1,26 +1,26 @@
-import React, { useState } from "react"
-import { PostProps } from "../lib/types"
-import { Categories } from "./Categories"
-import { CustomerStories } from "./CustomerStories"
-import { FeaturedPostItem } from "./FeaturedPostItem"
-import PostItem from "./PostItem"
-import { ScalingRailway } from "./ScalingRailway"
+import React, { useState } from "react";
+import { PostProps } from "../lib/types";
+import { Categories } from "./Categories";
+import { CustomerStories } from "./CustomerStories";
+import { FeaturedPostItem } from "./FeaturedPostItem";
+import PostItem from "./PostItem";
+import { ScalingRailway } from "./ScalingRailway";
 
-const DEFAULT_POSTS_LENGTH = 8
+const DEFAULT_POSTS_LENGTH = 8;
 
-const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export const PostList: React.FC<{
-  posts: PostProps[]
-  category?: string
-  showScalingRailway?: boolean
-  showCustomerStories?: boolean
+  posts: PostProps[];
+  category?: string;
+  showScalingRailway?: boolean;
+  showCustomerStories?: boolean;
 }> = ({ posts, category, showScalingRailway, showCustomerStories }) => {
-  const featuredPosts = posts.filter((p) => p.properties.Featured.checkbox)
-  const otherPosts = posts.filter((p) => !p.properties.Featured.checkbox)
+  const featuredPosts = posts.filter((p) => p.properties.Featured.checkbox);
+  const otherPosts = posts.filter((p) => !p.properties.Featured.checkbox);
 
-  const [showMore, setShowMore] = useState(false)
-  const hasMorePosts = otherPosts.length > DEFAULT_POSTS_LENGTH
+  const [showMore, setShowMore] = useState(false);
+  const hasMorePosts = otherPosts.length > DEFAULT_POSTS_LENGTH;
 
   return (
     <>
@@ -65,7 +65,7 @@ export const PostList: React.FC<{
                   className="md:col-span-2 w-full text-center text-pink-700 border border-pink-200 rounded-md px-4 py-2 hover:text-pink-800 hover:border-pink-500 transition-colors duration-100"
                   onClick={() => setShowMore(true)}
                 >
-                  Load more posts...
+                  Charger plus d'articles...
                 </button>
               )}
             </div>
@@ -73,5 +73,5 @@ export const PostList: React.FC<{
         )}
       </div>
     </>
-  )
-}
+  );
+};

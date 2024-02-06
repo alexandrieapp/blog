@@ -1,29 +1,29 @@
-import dayjs from "dayjs"
-import React, { useMemo } from "react"
-import { PostProps } from "../lib/types"
-import { cn } from "../utils"
-import { Divider } from "./Divider"
-import Link from "./Link"
-import { NotionText } from "./NotionText"
-import { PostCategory } from "./PostCategory"
+import dayjs from "dayjs";
+import React, { useMemo } from "react";
+import { PostProps } from "../lib/types";
+import { cn } from "../utils";
+import { Divider } from "./Divider";
+import Link from "./Link";
+import { NotionText } from "./NotionText";
+import { PostCategory } from "./PostCategory";
 
 export const ContinueReading: React.FC<{
-  posts: PostProps[]
-  category: string
+  posts: PostProps[];
+  category: string;
 }> = ({ posts, category }) => {
-  category = category === "Guide" ? "Guides" : category
+  category = category === "Guide" ? "Guides" : category;
 
   return (
     <div>
       <header className={cn("flex items-center justify-between mb-8")}>
         <h3 className="text-gray-500 font-semibold text-lg">
-          Continue Reading...
+          Continuer à lire...
         </h3>
         <Link
           className={cn("text-pink-500", "hover:underline")}
           href={`/${category.toLowerCase()}`}
         >
-          View All {category} →
+          Voir tout {category} →
         </Link>
       </header>
 
@@ -33,18 +33,17 @@ export const ContinueReading: React.FC<{
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const RelatedPostItem: React.FC<{ post: PostProps }> = ({ post }) => {
   const formattedDate = useMemo(
-    () =>
-      dayjs(new Date(post.properties.Date.date.start)).format("MMM D, YYYY"),
+    () => dayjs(new Date(post.properties.Date.date.start)).format("DD/MM/YYYY"),
     [post.properties.Date.date.start]
-  )
+  );
 
-  const author = post.properties.Authors.people[0]
-  const category = post.properties.Category.select?.name
+  const author = post.properties.Authors.people[0];
+  const category = post.properties.Category.select?.name;
 
   return (
     <Link
@@ -76,5 +75,5 @@ const RelatedPostItem: React.FC<{ post: PostProps }> = ({ post }) => {
         </span>
       </div>
     </Link>
-  )
-}
+  );
+};

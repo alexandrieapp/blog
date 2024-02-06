@@ -1,25 +1,24 @@
-import Link from "@components/Link"
-import { PostProps } from "@lib/types"
-import dayjs from "dayjs"
-import React, { useMemo } from "react"
-import { Divider } from "./Divider"
-import { NotionText } from "./NotionText"
-import { PostCategory } from "./PostCategory"
+import Link from "@components/Link";
+import { PostProps } from "@lib/types";
+import dayjs from "dayjs";
+import React, { useMemo } from "react";
+import { Divider } from "./Divider";
+import { NotionText } from "./NotionText";
+import { PostCategory } from "./PostCategory";
 
 export interface Props {
-  post: PostProps
+  post: PostProps;
 }
 
 const PostItem: React.FC<Props> = ({ post }) => {
   const formattedDate = useMemo(
-    () =>
-      dayjs(new Date(post.properties.Date.date.start)).format("MMM D, YYYY"),
+    () => dayjs(new Date(post.properties.Date.date.start)).format("DD/MM/YYYY"),
     [post.properties.Date.date.start]
-  )
+  );
 
-  const author = post.properties.Authors.people[0]
-  const authorExists = author != null && author.name != null
-  const category = post.properties.Category.select?.name
+  const author = post.properties.Authors.people[0];
+  const authorExists = author != null && author.name != null;
+  const category = post.properties.Category.select?.name;
 
   return (
     <Link
@@ -57,7 +56,7 @@ const PostItem: React.FC<Props> = ({ post }) => {
         </span>
       </div>
     </Link>
-  )
-}
+  );
+};
 
-export default PostItem
+export default PostItem;

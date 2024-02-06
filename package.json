@@ -1,5 +1,5 @@
 {
-  "name": "railway-blog",
+  "name": "alexandrie-blog",
   "author": "@farazpatankar",
   "license": "MIT",
   "version": "1.0.0",
@@ -32,6 +32,7 @@
     "@notionhq/client": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.3.1",
     "@tailwindcss/typography": "^0.5.9",
+    "@vercel/og": "^0.6.2",
     "async-sema": "^3.1.1",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",

@@ -1,19 +1,18 @@
-import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo"
-import Head from "next/head"
-import { DefaultSeoProps } from "next-seo"
+import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
+import Head from "next/head";
+import { DefaultSeoProps } from "next-seo";
 
 export interface Props extends NextSeoProps {
-  title?: string
-  description?: string
-  image?: string
-  author?: string
+  title?: string;
+  description?: string;
+  image?: string;
+  author?: string;
 }
 
-const title = "Railway Blog"
-export const url = "https://blog.railway.app"
-const description = "Blog posts from the Railway team"
-const image =
-  "https://og.railway.app/api/image?fileType=png&layoutName=docs&Page=Railway+Blog&Url=blog.railway.app"
+const title = "Alexandrie Blog";
+export const url = "https://blog.alexandrie.app";
+const description = "Blog posts from the Alexandrie team";
+const image = "https://blog.alexandrie.app/api/og?title=Blog";
 
 const config: DefaultSeoProps = {
   title,
@@ -27,15 +26,11 @@ const config: DefaultSeoProps = {
       authors: [],
     },
   },
-  twitter: {
-    handle: "@Railway_App",
-    cardType: "summary_large_image",
-  },
-}
+};
 
 const SEO: React.FC<Props> = ({ image, author, ...props }) => {
-  const title = props.title ?? config.title
-  const description = props.description || config.description
+  const title = props.title ?? config.title;
+  const description = props.description || config.description;
 
   return (
     <>
@@ -61,7 +56,7 @@ const SEO: React.FC<Props> = ({ image, author, ...props }) => {
         <meta name="description" content={description} />
       </Head>
     </>
-  )
-}
+  );
+};
 
-export default SEO
+export default SEO;

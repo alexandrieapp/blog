@@ -1,35 +1,36 @@
-import { NotionText } from "@components/NotionText"
-import Page from "@layouts/Page"
-import { PostProps } from "@lib/types"
-import dayjs from "dayjs"
-import React, { useMemo } from "react"
-import { BottomCTA } from "../components/BottomCTA"
-import { ContinueReading } from "../components/ContinueReading"
-import { Divider } from "../components/Divider"
-import { useOgImage } from "../hooks/useOGImage"
-import { cn } from "../utils"
+import { NotionText } from "@components/NotionText";
+import Page from "@layouts/Page";
+import { PostProps } from "@lib/types";
+import dayjs from "dayjs";
+import React, { useMemo } from "react";
+import { BottomCTA } from "../components/BottomCTA";
+import { ContinueReading } from "../components/ContinueReading";
+import { Divider } from "../components/Divider";
+import { useOgImage } from "../hooks/useOGImage";
+import { cn } from "../utils";
 
 export interface Props {
-  post: PostProps
-  relatedPosts: PostProps[]
-  children?: React.ReactNode
+  post: PostProps;
+  relatedPosts: PostProps[];
+  children?: React.ReactNode;
 }
 
 export const PostPage: React.FC<Props> = ({ post, relatedPosts, children }) => {
   const formattedDate = useMemo(
-    () => dayjs(post.properties.Date.date.start).format("MMM D, YYYY"),
+    () => dayjs(post.properties.Date.date.start).format("DD/MM/YYYY"),
     [post.properties.Date.date.start]
-  )
+  );
 
-  const author = post.properties.Authors.people[0]
+  const author = post.properties.Authors.people[0];
   const ogImage = useOgImage({
     title: post.properties.Page.title[0].plain_text,
     authorName: author?.name,
     image: post.properties?.Image?.url,
-  })
-  const authorExists = author != null && author.name != null
+  });
 
-  const category = post.properties.Category?.select?.name
+  const authorExists = author != null && author.name != null;
+
+  const category = post.properties.Category?.select?.name;
 
   return (
     <Page
@@ -88,5 +89,5 @@ export const PostPage: React.FC<Props> = ({ post, relatedPosts, children }) => {
         </div>
       </div>
     </Page>
-  )
-}
+  );
+};

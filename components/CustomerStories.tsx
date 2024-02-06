@@ -1,9 +1,9 @@
-import React from "react"
-import { useIsMounted } from "../hooks/useIsMounted"
-import { Blob } from "./Blob"
-import { cn } from "../utils"
-import Link from "./Link"
-import Image from "next/image"
+import React from "react";
+import { useIsMounted } from "../hooks/useIsMounted";
+import { Blob } from "./Blob";
+import { cn } from "../utils";
+import Link from "./Link";
+import Image from "next/image";
 
 export const CustomerStories: React.FC = () => {
   return (
@@ -20,9 +20,9 @@ export const CustomerStories: React.FC = () => {
 
       <header className="max-w-6xl mx-auto mb-12 flex items-center justify-between">
         <div>
-          <h1 className="text-[42px] font-bold mb-3">Customer Stories</h1>
+          <h1 className="text-[42px] font-bold mb-3">User stories</h1>
           <p className="text-lg text-gray-600">
-            Learn how we keep the train going, on-time, and fire-free.
+            Découvrez comment Alexandrie change la vie de ses utilisateurs.
           </p>
         </div>
 
@@ -38,8 +38,8 @@ export const CustomerStories: React.FC = () => {
         <CustomerStoryPostItem
           title={
             <>
-              Building a new cloud-based collaborative CAD tool. Q&A with Paul
-              O&apos;Carroll from <span className="underline">Arcol</span>
+              Automatiser son réassort. Q&A avec Charles-Henri de la
+              <span className="underline">Librairie Théatrale</span>
             </>
           }
           slug={"/p/software-for-architects-paul-ocarroll-arcol-interview"}
@@ -50,8 +50,8 @@ export const CustomerStories: React.FC = () => {
         <CustomerStoryPostItem
           title={
             <>
-              How <span className="underline">Peerlist</span> Built a New Kind 
-              of Professional Network with Railway
+              Comment <span className="underline">Majo</span> a développé son
+              activité en ligne.
             </>
           }
           slug={"/p/peerlist-professional-network-yogini-bende"}
@@ -63,19 +63,19 @@ export const CustomerStories: React.FC = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
 const CustomerStoryPostItem: React.FC<{
-  title: React.ReactElement
-  slug?: string
-  drops?: string
-  image: string
-  className?: string
-  avatars?: string[]
+  title: React.ReactElement;
+  slug?: string;
+  drops?: string;
+  image: string;
+  className?: string;
+  avatars?: string[];
 }> = ({ title, avatars, drops, slug, image, className }) => {
-  const Wrapper = slug ? Link : "div"
-  const isMounted = useIsMounted()
+  const Wrapper = slug ? Link : "div";
+  const isMounted = useIsMounted();
 
   return (
     <Wrapper
@@ -136,5 +136,5 @@ const CustomerStoryPostItem: React.FC<{
         </div>
       )}
     </Wrapper>
-  )
-}
+  );
+};

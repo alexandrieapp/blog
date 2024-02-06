@@ -1,6 +1,6 @@
-import React from "react"
-import { cn } from "../utils"
-import Link from "./Link"
+import React from "react";
+import { cn } from "../utils";
+import Link from "./Link";
 
 export const BottomCTA: React.FC = () => {
   return (
@@ -10,20 +10,20 @@ export const BottomCTA: React.FC = () => {
       )}
     >
       <h3 className={cn("text-[40px] mb-4 font-bold")}>
-        Your train has arrived!
+        Tournez la page! Changez de logiciel de gestion.
       </h3>
       <p className={cn("text-xl text-center max-w-xl text-opacity-90")}>
-        Join thousands of developers deploying hundreds of thousands of
-        applications effortlessly on Railway.
+        "Au début, on a un peu peur. Ensuite on se demande comment on faisait
+        avant." Charles-Henri, gérant de la Librairie Théâtrale.
       </p>
       <Link
-        href="https://dev.new"
+        href="https://712y368h9br.typeform.com/to/ZAcMQFzO?typeform-source=blog.alexandrie.app"
         className={cn(
           "no-underline bg-white text-pink-500 py-3 px-5 rounded-lg mt-8 font-semibold text-xl"
         )}
       >
-        Start a New Project
+        Prendre RDV
       </Link>
     </div>
-  )
-}
+  );
+};

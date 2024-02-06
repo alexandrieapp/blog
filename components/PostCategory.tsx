@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const categoryToStyle = {
   News: "text-blue-500 bg-blue-50",
@@ -7,11 +7,11 @@ const categoryToStyle = {
   Engineering: "text-pink-500 bg-pink-50",
   "User Stories": "text-pink-500 bg-pink-50",
   "Scaling Railway": "text-green-500 bg-green-50",
-}
+};
 
 export const PostCategory: React.FC<{
-  category: string
-  className?: string
+  category: string;
+  className?: string;
 }> = ({ category, className }) => {
   return (
     <div
@@ -21,5 +21,5 @@ export const PostCategory: React.FC<{
     >
       {category}
     </div>
-  )
-}
+  );
+};
