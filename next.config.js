@@ -5,7 +5,6 @@ module.exports = {
   images: {
     domains: [
       "user-images.githubusercontent.com",
-      "og.railway.app",
       "res.cloudinary.com",
 
       // Images from Notion
