@@ -9,12 +9,10 @@ export const BottomCTA: React.FC = () => {
         "bg-bottomCta my-16 p-16 text-white rounded-xl flex flex-col items-center justify-center"
       )}
     >
-      <h3 className={cn("text-[40px] mb-4 font-bold")}>
-        Tournez la page! Changez de logiciel de gestion.
-      </h3>
+      <h3 className={cn("text-[40px] mb-4 font-bold")}>Tournez la page !</h3>
       <p className={cn("text-xl text-center max-w-xl text-opacity-90")}>
-        "Au début, on a un peu peur. Ensuite on se demande comment on faisait
-        avant." Charles-Henri, gérant de la Librairie Théâtrale.
+        Alexandrie veut construire le meilleur logiciel de gestion de librairie,
+        adapté aux usages de demain.
       </p>
       <Link
         href="https://712y368h9br.typeform.com/to/ZAcMQFzO?typeform-source=blog.alexandrie.app"
