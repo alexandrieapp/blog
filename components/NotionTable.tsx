@@ -33,38 +33,36 @@ export const NotionTable: React.FC<Props> = ({ block }) => {
   }
 
   return (
-    <div className="my-8 overflow-x-auto">
-      <div className="rounded-lg overflow-hidden border border-gray-200">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              {tableData.header.map((cell, index) => (
-                <th
-                  key={index}
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200"
+    <div className="my-8 rounded-lg border border-gray-200 overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200">
+        <thead className="bg-gray-50">
+          <tr>
+            {tableData.header.map((cell, index) => (
+              <th
+                key={index}
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                <NotionText text={cell} />
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {tableData.rows.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {row.map((cell, cellIndex) => (
+                <td
+                  key={cellIndex}
+                  className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                 >
                   <NotionText text={cell} />
-                </th>
+                </td>
               ))}
             </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {tableData.rows.map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                {row.map((cell, cellIndex) => (
-                  <td
-                    key={cellIndex}
-                    className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-200 last:border-b-0"
-                  >
-                    <NotionText text={cell} />
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
