@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# TypeScript incremental (keep out of repo; Railway cache mount conflicts with root file)
+tsconfig.tsbuildinfo
+
 # next.js
 /.next/
 /out/
