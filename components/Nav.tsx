@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "@components/Link";
 import Logo from "@components/Logo";
-import { Moon, Sun, Rss } from "react-feather";
+import { Moon, Sun } from "react-feather";
 import { useTheme } from "next-themes";
 import { useIsMounted } from "../hooks/useIsMounted";
 import { useRouter } from "next/router";
@@ -22,26 +22,12 @@ const Nav: React.FC = () => {
           !isBlogPage ? "" : "border-gray-100"
         )}
       >
-        <Link href="/" className="flex items-center space-x-4">
-          <Logo />
-          <span className="text-xl font-bold">Blog</span>
+        <Link href="/" className="inline-flex items-center gap-3">
+          <Logo className="h-8 w-auto shrink-0" />
+          <span className="text-xl font-bold leading-none">Blog</span>
         </Link>
 
         <div className="text-gray-600 flex items-center space-x-6">
-          <Link
-            className="text-sm hover:text-pink-600"
-            href="https://alexandrie.app"
-          >
-            Accueil
-          </Link>
-
-          <button
-            className="hover:text-pink-600"
-            onClick={() => window.open("https://blog.alexandrie.app/rss.xml")}
-          >
-            <Rss size={16} />
-          </button>
-
           {isMounted && (
             <button
               className="hover:text-pink-600"

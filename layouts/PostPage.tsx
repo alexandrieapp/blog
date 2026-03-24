@@ -1,5 +1,6 @@
 import { NotionText } from "@components/NotionText";
 import Page from "@layouts/Page";
+import { SITE_NAME } from "@lib/site";
 import { PostProps } from "@lib/types";
 import dayjs from "dayjs";
 import React, { useMemo } from "react";
@@ -22,23 +23,35 @@ export const PostPage: React.FC<Props> = ({ post, relatedPosts, children }) => {
   );
 
   const author = post.properties.Authors.people[0];
+  const plainTitle = post.properties.Page.title[0].plain_text;
+  const slug = post.properties.Slug.rich_text[0].plain_text;
+
   const ogImage = useOgImage({
-    title: post.properties.Page.title[0].plain_text,
+    title: plainTitle,
     authorName: author?.name,
-    image: post.properties?.Image?.url,
   });
 
   const authorExists = author != null && author.name != null;
 
   const category = post.properties.Category?.select?.name;
+  const description =
+    post.properties.Description.rich_text[0]?.plain_text ?? "";
 
   return (
     <Page
       seo={{
-        title: post.properties.Page.title[0].plain_text,
-        description: post.properties.Description.rich_text[0].plain_text,
+        title: `${plainTitle} | ${SITE_NAME}`,
+        description,
         image: ogImage,
-        author: author?.name,
+        canonicalPath: `/p/${slug}`,
+        openGraph: {
+          type: "article",
+          article: {
+            publishedTime: post.properties.Date.date.start,
+            ...(authorExists ? { authors: [author.name] } : {}),
+            ...(category != null ? { section: category } : {}),
+          },
+        },
       }}
     >
       <div className="mt-10 mb-5 px-5 md:px-8 mx-auto">

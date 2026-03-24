@@ -66,6 +66,10 @@ module.exports = {
         current: "currentColor",
         black: colors.black,
         white: colors.white,
+        teal: {
+          ...colors.teal,
+          DEFAULT: "var(--color-teal)",
+        },
         ...customColors,
       },
       backgroundImage: {

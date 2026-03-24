@@ -2,6 +2,10 @@
 
 /* Write your own custom base styles here */
 
+:root {
+  --color-teal: #023336;
+}
+
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */

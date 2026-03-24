@@ -1,61 +1,70 @@
-import { DefaultSeo, NextSeo, NextSeoProps } from "next-seo";
-import Head from "next/head";
-import { DefaultSeoProps } from "next-seo";
+import { NextSeo, NextSeoProps } from "next-seo";
+import { SITE_NAME, SITE_URL } from "@lib/site";
+
+const defaultDescription =
+  "Articles et guides de l’équipe Alexandrie.";
+
+const defaultOgImage = `${SITE_URL}/api/og?title=${encodeURIComponent(
+  SITE_NAME
+)}&author=${encodeURIComponent("Alexandrie")}`;
 
 export interface Props extends NextSeoProps {
   title?: string;
   description?: string;
   image?: string;
-  author?: string;
+  /** Path only, e.g. `/p/my-post` or `/Guides` */
+  canonicalPath?: string;
 }
 
-const title = "Alexandrie Blog";
-export const url = "https://blog.alexandrie.app";
-const description = "Blog posts from the Alexandrie team";
-const image = "https://blog.alexandrie.app/api/og?title=Blog";
+const SEO: React.FC<Props> = ({
+  title = SITE_NAME,
+  description: descriptionProp,
+  image,
+  canonicalPath,
+  openGraph: openGraphProp,
+  ...rest
+}) => {
+  const description = descriptionProp ?? defaultDescription;
+  const canonical = canonicalPath
+    ? `${SITE_URL}${
+        canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`
+      }`
+    : SITE_URL;
+  const ogImageUrl = image ?? defaultOgImage;
+  const ogType = openGraphProp?.type ?? "website";
 
-const config: DefaultSeoProps = {
-  title,
-  description,
-  openGraph: {
-    type: "website",
-    url,
-    site_name: title,
-    images: [{ url: image }],
-    article: {
-      authors: [],
-    },
-  },
-};
-
-const SEO: React.FC<Props> = ({ image, author, ...props }) => {
-  const title = props.title ?? config.title;
-  const description = props.description || config.description;
+  const articleOg =
+    ogType === "article" && openGraphProp?.article != null
+      ? { article: openGraphProp.article }
+      : {};
 
   return (
-    <>
-      <DefaultSeo {...config} />
-
-      <NextSeo
-        {...props}
-        {...(image == null
-          ? {}
-          : {
-              openGraph: {
-                images: [{ url: image }],
-                article: {
-                  authors: [author],
-                },
-              },
-            })}
-      />
-
-      <Head>
-        <title>{title}</title>
-
-        <meta name="description" content={description} />
-      </Head>
-    </>
+    <NextSeo
+      {...rest}
+      title={title}
+      description={description}
+      canonical={canonical}
+      openGraph={{
+        url: canonical,
+        siteName: SITE_NAME,
+        type: ogType,
+        title,
+        description,
+        locale: openGraphProp?.locale ?? "fr_FR",
+        images: [
+          {
+            url: ogImageUrl,
+            width: 1200,
+            height: 630,
+            alt: title,
+          },
+        ],
+        ...articleOg,
+      }}
+      twitter={{
+        cardType: "summary_large_image",
+      }}
+    />
   );
 };
 

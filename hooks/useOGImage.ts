@@ -1,21 +1,14 @@
-import { useTheme } from "next-themes";
+import { SITE_URL } from "@lib/site";
 
 export const useOgImage = ({
   title,
   authorName,
-  image,
 }: {
   title: string;
-  authorName: string;
-  image?: string;
+  authorName?: string;
 }): string => {
-  // const { theme } = useTheme();
-
   const encodedTitle = encodeURIComponent(title);
-  const encodedAuthorName = encodeURIComponent(authorName);
+  const encodedAuthorName = encodeURIComponent(authorName ?? "Alexandrie");
 
-  return (
-    image ??
-    `https://blog.alexandrie.app/api/og?title=${encodedTitle}&author=${encodedAuthorName}`
-  );
+  return `${SITE_URL}/api/og?title=${encodedTitle}&author=${encodedAuthorName}`;
 };

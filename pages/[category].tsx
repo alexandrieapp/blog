@@ -1,18 +1,33 @@
 import Page from "@layouts/Page"
+import { SITE_NAME } from "@lib/site"
 import { getDatabase } from "@lib/notion"
 import { PostProps } from "@lib/types"
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { PostList } from "../components/PostList"
 import { CATEGORIES } from "../constants"
 
+const categoryLabel = (slug: string) =>
+  slug.length > 0 ? slug.charAt(0).toUpperCase() + slug.slice(1) : slug
+
 export interface Props {
   posts: PostProps[]
-  category: string
+  category?: string
 }
 
 const CategoryPage: NextPage<Props> = ({ posts = [], category }) => {
+  const label = category != null ? categoryLabel(category) : null
+
   return (
-    <Page>
+    <Page
+      seo={{
+        title: label != null ? `${label} | ${SITE_NAME}` : SITE_NAME,
+        description:
+          label != null
+            ? `Articles « ${label} » sur le blog Alexandrie.`
+            : "Articles et guides de l’équipe Alexandrie.",
+        ...(category != null ? { canonicalPath: `/${category}` } : {}),
+      }}
+    >
       <PostList posts={posts} category={category} />
     </Page>
   )

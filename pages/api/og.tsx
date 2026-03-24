@@ -1,47 +1,52 @@
 import { ImageResponse } from "@vercel/og";
-import { NextRequest } from "next/server";
-
-import Logo from "@components/Logo";
+import type { NextRequest } from "next/server";
 
 export const config = {
   runtime: "edge",
 };
 
-const handler = (req: NextRequest) => {
-  const { searchParams } = req.nextUrl;
+function decodeParam(value: string | null, fallback: string): string {
+  if (value == null || value === "") return fallback;
+  try {
+    return decodeURIComponent(value.replace(/\+/g, " "));
+  } catch {
+    return value;
+  }
+}
 
-  const title = searchParams.get("title");
-  const author = searchParams.get("author");
+export default function handler(req: NextRequest) {
+  const { searchParams, origin } = req.nextUrl;
+  const title = decodeParam(searchParams.get("title"), "Alexandrie Blog");
+  const author = decodeParam(searchParams.get("author"), "Alexandrie");
+  const logoUrl = `${origin}/logo_full.png`;
 
   return new ImageResponse(
     (
       <div
         style={{
-          background: "rgb(10,10,10)",
+          background:
+            "linear-gradient(135deg, rgb(10,10,10) 0%, rgb(38,38,38) 45%, rgb(82,82,82) 100%)",
+          fontFamily:
+            'ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif',
         }}
-        tw="flex h-full w-full flex-row px-10 py-10 items-center"
+        tw="flex h-full w-full flex-row items-center justify-between px-16 py-12"
       >
-        <div
-          tw="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(45deg, rgba(10,10,10,1) 0%, rgba(82,82,82,1) 75%, rgba(163,163,163,1) 100%)",
-          }}
+        <div tw="flex flex-col justify-center flex-1 pr-12 min-w-0">
+          <p tw="text-[52px] font-bold text-white leading-tight">{title}</p>
+          <p tw="text-[26px] text-neutral-300 mt-5">par {author}</p>
+        </div>
+        <img
+          src={logoUrl}
+          alt=""
+          width={400}
+          height={100}
+          tw="flex-shrink-0 object-contain object-right"
         />
-        <div tw="flex flex-grow flex-col text-left text-neutral-50">
-          <p tw=" font-bold text-4xl">{title ?? "Blog"}</p>
-          <p tw="text-lg text-neutral-100">par {author ?? "Alexandrie"}</p>
-        </div>
-        <div tw="ml-10 mr-10 flex">
-          <Logo />
-        </div>
       </div>
     ),
     {
-      width: 1000,
-      height: 400,
+      width: 1200,
+      height: 630,
     }
   );
-};
-
-export default handler;
+}
