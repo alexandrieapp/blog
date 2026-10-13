@@ -6,9 +6,24 @@ import { useMemo } from "react";
 import "@components/Amplitude";
 import { transformThemeToCustomProperties } from "theme-custom-properties";
 import { colorThemes, defaultColorMode } from "../styles/theme";
-import { DM_Sans } from "@next/font/google";
+import localFont from "@next/font/local";
 
-const dmSans = DM_Sans({ weight: ["400", "500", "700"], subsets: ["latin"] });
+// Fichiers variables (graisses 100 à 1000) : @next/font/google ne propose que 400, 500 et 700 pour DM Sans.
+const dmSans = localFont({
+  src: [
+    {
+      path: "../styles/fonts/DMSans-latin.woff2",
+      weight: "100 1000",
+      style: "normal",
+    },
+    {
+      path: "../styles/fonts/DMSans-Italic-latin.woff2",
+      weight: "100 1000",
+      style: "italic",
+    },
+  ],
+  display: "swap",
+});
 
 const AlexandrieBlog = ({ Component, pageProps }: AppProps) => {
   const { bodyCSS } = useMemo(
