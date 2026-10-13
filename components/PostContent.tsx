@@ -6,6 +6,7 @@ import * as jsxRuntime from "react/jsx-runtime";
 
 import { Code } from "@components/Code";
 import Link from "@components/Link";
+import { cn } from "../utils";
 
 // @types/react 18.0 ne type pas encore les exports de react/jsx-runtime.
 const { Fragment, jsx, jsxs } = jsxRuntime as unknown as Pick<
@@ -152,16 +153,25 @@ const components = {
   tbody: ({ children }) => (
     <tbody className="bg-white divide-y divide-gray-200">{children}</tbody>
   ),
-  th: ({ children }) => (
+  th: ({ scope, children, ...props }) => (
     <th
-      scope="col"
-      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+      scope={scope ?? "col"}
+      className={cn(
+        "px-4 py-3 text-left align-top font-semibold text-gray-900",
+        scope === "row" ? "text-sm" : "text-sm bg-gray-50",
+        props["data-highlight"] && "bg-[#81deff] text-[#0f0f0f]"
+      )}
     >
       {children}
     </th>
   ),
-  td: ({ children }) => (
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+  td: ({ children, ...props }) => (
+    <td
+      className={cn(
+        "px-4 py-3 align-top text-sm text-gray-700",
+        props["data-highlight"] && "bg-[#81deff]/20 text-gray-900 font-medium"
+      )}
+    >
       {children}
     </td>
   ),

@@ -18,6 +18,9 @@ export const headingId = (text: string) =>
  * Directives reconnues :
  *   ::video{src="./demo.mp4" caption="…"}
  *   ::youtube{id="dQw4w9WgXcQ"}
+ *   :::table{highlight="Alexandrie"}   ← met en valeur la colonne nommée
+ *   | … tableau markdown … |
+ *   :::
  *
  * Elles sont rendues par les composants de `components/PostContent.tsx`
  * via les balises `post-video` et `post-youtube`.
@@ -56,7 +59,52 @@ const remarkPostElements = (dir: string) => (tree: MdastRoot, file) => {
         node.children = [];
         return;
       }
+      if (
+        node.type === "containerDirective" &&
+        node.name === "table" &&
+        attrs.highlight &&
+        parent != null &&
+        index != null
+      ) {
+        const table = node.children.find((c) => c.type === "table");
+        const column =
+          table?.type === "table"
+            ? table.children[0].children.findIndex(
+                (cell) => toString(cell).trim() === attrs.highlight
+              )
+            : -1;
+        if (table?.type !== "table" || column < 0) {
+          file.fail(
+            `:::table : colonne « ${attrs.highlight} » introuvable`,
+            node
+          );
+          return;
+        }
+        for (const row of table.children) {
+          const cell = row.children[column];
+          if (cell == null) continue;
+          cell.data = {
+            ...cell.data,
+            hProperties: { ...cell.data?.hProperties, dataHighlight: "true" },
+          };
+        }
+        parent.children.splice(index, 1, ...node.children);
+        return index;
+      }
       file.fail(`Directive inconnue ou incomplète : ::${node.name}`, node);
+    }
+
+    // La première colonne porte l'intitulé de chaque ligne.
+    if (node.type === "table") {
+      for (const row of node.children.slice(1)) {
+        const cell = row.children[0];
+        if (cell == null) continue;
+        cell.data = {
+          ...cell.data,
+          hName: "th",
+          hProperties: { ...cell.data?.hProperties, scope: "row" },
+        };
+      }
     }
 
     if (node.type === "heading") {

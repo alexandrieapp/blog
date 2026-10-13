@@ -82,24 +82,26 @@ Lancé en 2023, Alexandrie est un logiciel de gestion de librairie conçu dès l
 
 ### Tableau comparatif
 
-|   | Tite-Live | Librisoft | Bookshop | Alexandrie |
+:::table{highlight="Alexandrie"}
+|  | Alexandrie | Tite-Live | Librisoft | Bookshop |
 | --- | --- | --- | --- | --- |
-| Accès | Windows, au poste | Windows, au poste | Navigateur | Navigateur, tous appareils |
-| Caisse | Reliée au poste (fixe ou portable), hors ligne | Reliée au poste (fixe ou portable), hors ligne | N/A | Nomade sur téléphone ou tablette, hors ligne |
-| Base bibliographique | Intégrée | FEL (Dilicom) | Electre | FEL (Dilicom) |
-| Coût d’entrée | Sur devis | Sur devis | Sur devis | 0 €, migration offerte |
-| Abonnement | Élevé | Modéré | Élevé | 100 € HT (50 € HT pour les associations) + Shopify |
+| Accès | Navigateur, tous appareils | Windows, au poste | Windows, au poste | Navigateur |
+| Caisse | Nomade sur téléphone ou tablette, hors ligne | Reliée au poste (fixe ou portable), hors ligne | Reliée au poste (fixe ou portable), hors ligne | N/A |
+| Base bibliographique | FEL (Dilicom) | Intégrée | FEL (Dilicom) | Electre |
+| Coût d’entrée | 0 €, migration offerte | Sur devis | Sur devis | Sur devis |
+| Abonnement | 100 € HT (50 € HT pour les associations) + Shopify | Élevé | Modéré | Élevé |
+:::
 
 ### Questions fréquentes
 
-**Combien coûte un logiciel de gestion de librairie ?**
+**→ Combien coûte un logiciel de gestion de librairie ?**
 
 Additionnez le coût d’entrée, qui peut atteindre plusieurs milliers d’euros, et l’abonnement, qui va d’environ 100 € à plus de 400 € par mois selon la solution.
 
-**Peut-on changer de logiciel en cours d’activité ?**
+**→ Peut-on changer de logiciel en cours d’activité ?**
 
 Oui, de préférence hors période de forte activité. Vérifiez qui prend en charge la reprise de vos données. Chez Alexandrie, elle est offerte.
 
-**Faut-il un ordinateur pour encaisser ?**
+**→ Faut-il un ordinateur pour encaisser ?**
 
 Pas nécessairement. Une caisse certifiée NF525 peut fonctionner sur tablette ou téléphone, y compris hors ligne.

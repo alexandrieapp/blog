@@ -63,7 +63,17 @@ Deux directives couvrent les vidéos :
 ::youtube{id="dQw4w9WgXcQ"}
 ```
 
-Une directive inconnue fait échouer le build.
+Dans un tableau, la ligne d'en-tête et la première colonne servent d'intitulés et s'affichent en gras. Pour mettre une colonne en valeur, entourer le tableau de la directive `table` en nommant l'en-tête de la colonne :
+
+```md
+:::table{highlight="Alexandrie"}
+|  | Alexandrie | Concurrent |
+| --- | --- | --- |
+| Accès | Navigateur | Windows |
+:::
+```
+
+Une directive inconnue, ou une colonne `highlight` introuvable, fait échouer le build.
 
 ### Vidéos
 
