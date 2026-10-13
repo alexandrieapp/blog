@@ -1,26 +1,23 @@
-import Link from "@components/Link"
-import { getPostLink } from "@lib/site"
-import { Post } from "@lib/types"
-import dayjs from "dayjs"
-import React, { useMemo } from "react"
-import { Divider } from "./Divider"
-import { AuthorAvatar } from "./AuthorAvatar"
-import { PostCategory } from "./PostCategory"
-import Image from "next/image"
+import Link from "@components/Link";
+import { getPostLink } from "@lib/site";
+import { Post } from "@lib/types";
+import dayjs from "dayjs";
+import React, { useMemo } from "react";
+import { Divider } from "./Divider";
+import { AuthorAvatar } from "./AuthorAvatar";
+import { PostCategory } from "./PostCategory";
+import Image from "next/image";
 
 export const FeaturedPostItem: React.FC<{ post: Post }> = ({ post }) => {
   const formattedDate = useMemo(
-    () => dayjs(post.date).format("MMM D, YYYY"),
+    () => dayjs(post.date).format("DD/MM/YYYY"),
     [post.date]
-  )
+  );
 
-  const { author, category, featuredImage } = post
+  const { author, category, featuredImage } = post;
 
   return (
-    <Link
-      href={getPostLink(post.slug)}
-      className="group"
-    >
+    <Link href={getPostLink(post.slug)} className="group">
       {featuredImage != null ? (
         <div className="w-full aspect-[2.25/1] relative border border-black border-opacity-10 rounded-xl overflow-hidden">
           <Image
@@ -42,9 +39,7 @@ export const FeaturedPostItem: React.FC<{ post: Post }> = ({ post }) => {
           {post.title}
         </h3>
 
-        <p className="text-lg text-gray-800 line-clamp-2">
-          {post.description}
-        </p>
+        <p className="text-lg text-gray-800 line-clamp-2">{post.description}</p>
 
         <div className="flex items-center gap-3 mt-6">
           {author != null && (
@@ -62,5 +57,5 @@ export const FeaturedPostItem: React.FC<{ post: Post }> = ({ post }) => {
         </div>
       </div>
     </Link>
-  )
-}
+  );
+};

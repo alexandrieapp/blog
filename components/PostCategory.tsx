@@ -1,12 +1,11 @@
 import React from "react";
 
+// Teintes claires du design system Alexandrie (sky-light, yellow-light,
+// pink-light, neutre n-75) avec le texte « ink » correspondant.
 const categoryToStyle = {
-  News: "text-blue-500 bg-blue-50",
-  Guide: "text-green-500 bg-green-50",
-  Company: "text-pink-500 bg-pink-50",
-  Engineering: "text-pink-500 bg-pink-50",
-  "User Stories": "text-pink-500 bg-pink-50",
-  "Scaling Railway": "text-green-500 bg-green-50",
+  Guide: "text-[#07435f] bg-[#d4f2ff]",
+  Articles: "text-[#6e4e0b] bg-[#fff6d5]",
+  "User Stories": "text-[#7a2848] bg-[#fadadf]",
 };
 
 export const PostCategory: React.FC<{
@@ -16,7 +15,7 @@ export const PostCategory: React.FC<{
   return (
     <div
       className={`${
-        categoryToStyle[category] ?? "text-gray-500 bg-gray-50"
+        categoryToStyle[category] ?? "text-[#4b4844] bg-[#f0ede6]"
       } font-bold px-1.5 py-1 rounded max-w-max text-xs uppercase ${className}`}
     >
       {category}
