@@ -2,17 +2,15 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: {
-    domains: [
-      "user-images.githubusercontent.com",
-      "res.cloudinary.com",
-
-      // Image from github pages
-      "alexandrieapp.github.io",
-
-      // Images from Notion
-      "s3.us-west-2.amazonaws.com",
-      "prod-files-secure.s3.us-west-2.amazonaws.com",
-    ],
+  async redirects() {
+    return [
+      {
+        source:
+          "/p/comment-g%C3%A9rer-son-r%C3%A9assort-et-ses-commandes-fournisseur-avec-alexandrie",
+        destination:
+          "/p/comment-gerer-son-reassort-et-ses-commandes-fournisseur-avec-alexandrie",
+        permanent: true,
+      },
+    ];
   },
-}
+};

@@ -41,7 +41,7 @@ public/sitemap*.xml
 public/robots.txt
 public/rss.xml
 
-# notion
-.blog_index_data
-.blog_index_data_previews
+# copies of content/ assets, see scripts/copy-content-assets.js
+public/posts/
+public/authors/
 

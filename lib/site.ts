@@ -6,3 +6,5 @@ export const SITE_URL =
     : "https://blog.alexandrie.app";
 
 export const SITE_NAME = "Alexandrie Blog";
+
+export const getPostLink = (slug: string) => `/p/${slug}`;

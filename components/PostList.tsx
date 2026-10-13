@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PostProps } from "../lib/types";
+import { Post } from "../lib/types";
 import { Categories } from "./Categories";
 import { FeaturedPostItem } from "./FeaturedPostItem";
 import PostItem from "./PostItem";
@@ -9,11 +9,11 @@ const DEFAULT_POSTS_LENGTH = 8;
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export const PostList: React.FC<{
-  posts: PostProps[];
+  posts: Post[];
   category?: string;
 }> = ({ posts, category }) => {
-  const featuredPosts = posts.filter((p) => p.properties.Featured.checkbox);
-  const otherPosts = posts.filter((p) => !p.properties.Featured.checkbox);
+  const featuredPosts = posts.filter((p) => p.featured);
+  const otherPosts = posts.filter((p) => !p.featured);
 
   const [showMore, setShowMore] = useState(false);
   const hasMorePosts = otherPosts.length > DEFAULT_POSTS_LENGTH;
@@ -28,7 +28,7 @@ export const PostList: React.FC<{
           {featuredPosts.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 md:gap-y-12">
               {featuredPosts.map((p) => (
-                <FeaturedPostItem key={p.id} post={p} />
+                <FeaturedPostItem key={p.slug} post={p} />
               ))}
             </div>
           )}
@@ -48,7 +48,7 @@ export const PostList: React.FC<{
               {otherPosts
                 .slice(0, showMore ? undefined : DEFAULT_POSTS_LENGTH)
                 .map((p) => (
-                  <PostItem key={p.id} post={p} />
+                  <PostItem key={p.slug} post={p} />
                 ))}
 
               {showMore || !hasMorePosts ? (

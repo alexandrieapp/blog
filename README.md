@@ -1,44 +1,95 @@
-# Railway Blog
+# Blog Alexandrie
 
-This repository contains the source code for the [Railway blog](https://blog.railway.app/). We use a [NextJS](https://nextjs.org/) app with [Notion](https://www.notion.so/) as our CMS.
+Code source de [blog.alexandrie.app](https://blog.alexandrie.app) : une application [Next.js](https://nextjs.org/) dont les articles sont des fichiers Markdown versionnés dans ce dépôt. Publier ou modifier un article se fait par un commit sur `main`, qui déclenche un nouveau déploiement sur Railway.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Frailwayapp%2Fblog&envs=NOTION_API_TOKEN%2CPOSTS_TABLE_ID&NOTION_API_TOKENDesc=The+token+for+your+Notion+integration&POSTS_TABLE_IDDesc=The+database+ID+for+the+table+containing+your+posts)
+## Développement
 
-## ✨ Features
+```sh
+yarn install
+yarn dev        # http://localhost:3002
+```
 
-- NextJS
-- TypeScript
-- TailwindCSS
-- Notion
+## Écrire un article
 
-## 💁‍♀️ How to use
+Chaque article est un dossier dans `content/posts/`. Le nom du dossier est le slug de l'URL (`/p/<dossier>`), en minuscules et sans accents.
 
-We also have a [detailed guide](https://blog.railway.app/p/notion-public-api) on our blog to help users deploy a similar blog using Railway.
+```
+content/posts/mon-article/
+  index.md        ← frontmatter + contenu
+  cover.png       ← images, vidéos, fichiers à télécharger
+```
 
-### Step 1: Create a notion DB
-You can find instructions on how to [set up the Notion Database](https://blog.railway.app/p/next-notion-blog#setting-up-our-cms-on-notion), TLDR you need the following fields in a *Database - Inline* on a page, it needs to be inline, or else it won't work.
+### Frontmatter
 
-- Page (Title) - The page containing a post
-- Slug (Text) - The URL of a post
-- Published (Checkbox) - Only published blog posts show up on the website
-- Date (Date) - The date the post was published
-- Authors (Person) - A list of users that wrote the post
-- Image (Text) - The URL of the meta image for a post
-- Description (Text) - The preview text for the post
-- Featured (Checkbox) - Show post in the featured section
-- FeaturedImage (Text) - The URL of the image to use when a post is featured
-- Category (Select) - Post category options
+```yaml
+---
+title: Gérer les ruptures de stock en librairie
+date: 2025-03-12
+description: Texte d'aperçu affiché dans les listes et les métadonnées.
+category: Guide             # Guide | Articles
+author: jo                  # clé de content/authors.yml
+status: published           # draft | unlisted | published
+featured: false             # mis en avant en haut de la page d'accueil
+featuredImage: ./cover.png  # image de mise en avant (articles featured)
+slug: autre-slug            # facultatif, remplace le nom du dossier
+---
+```
 
-### Step 2: Create a Notion Integration
+| `status`    | Page générée en production | Listes, RSS, sitemap |
+| ----------- | -------------------------- | -------------------- |
+| `draft`     | non (visible en `yarn dev`, avec un bandeau) | non |
+| `unlisted`  | oui, en `noindex`          | non                  |
+| `published` | oui                        | oui                  |
 
-This will be done on Notion's [Manage Integration page](https://www.notion.so/my-integrations), copy the token, this will be used as `NOTION_API_TOKEN`
+`title`, `date`, `description` et `status` sont obligatoires : le build échoue si l'un d'eux manque.
 
-### Step 3: Get a hold of your Database ID
+### Contenu
 
-You can get this from the URL of the page, which you can obtain by clicking the *Share* button in the upper-right of the page and clicking *Copy Link*. The link structure is `https://www.notion.so/<user>/<database_Id>?v=....` , the database_Id will be used as `POSTS_TABLE_ID` during the deploy.
+Markdown standard avec les extensions GitHub (tableaux, barré, liens automatiques). Les fichiers placés dans le dossier de l'article se référencent en relatif :
 
-That is it, just make sure the properties on a post within Notion are not empty.
+```md
+![Légende affichée sous l'image](./capture.png)
 
-## 📝 Notes
+[Télécharger le fichier d'exemple](./exemple.csv)
 
-This blog is heavily based on [this example](https://github.com/ijjk/notion-blog) by JJ Kasper.
+> 💡 Une remarque mise en évidence.
+```
+
+Deux directives couvrent les vidéos :
+
+```md
+::video{src="./demo.mp4" caption="Légende facultative"}
+
+::youtube{id="dQw4w9WgXcQ"}
+```
+
+Une directive inconnue fait échouer le build.
+
+### Vidéos
+
+Les vidéos sont committées avec l'article, encodées en H.264 pour rester légères :
+
+```sh
+ffmpeg -i source.mov -c:v libx264 -crf 28 -vf "scale='min(1280,iw)':-2" -r 30 \
+  -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart demo.mp4
+```
+
+Si `ffmpeg` n'inclut pas `libx264` (build Homebrew minimal sur macOS), remplacer `-c:v libx264 -crf 28` par `-c:v h264_videotoolbox -b:v 700k`.
+
+Au-delà de 20 Mo après compression, la vidéo est publiée sur YouTube et intégrée avec `::youtube`.
+
+### Auteurs
+
+`content/authors.yml` associe une clé à un nom et à un avatar placé dans `content/authors/` :
+
+```yaml
+jo:
+  name: Jo
+  avatar: ./authors/jo.jpg
+```
+
+## Fonctionnement
+
+- `lib/posts.ts` lit et valide les articles ; `lib/markdown.ts` les convertit en arbre HTML (unified : remark-gfm, remark-directive) ; `components/PostContent.tsx` le rend avec les composants du blog.
+- Toutes les pages sont générées au build.
+- `scripts/copy-content-assets.js` copie les fichiers des articles et des auteurs dans `public/posts/` et `public/authors/` avant `dev` et `build`. Ces copies ne sont pas versionnées.

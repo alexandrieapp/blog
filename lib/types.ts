@@ -1,34 +1,29 @@
-import {
-  CheckboxPropertyValue,
-  DatePropertyValue,
-  Page,
-  PersonUser,
-  RichTextPropertyValue,
-  TitlePropertyValue,
-  URLPropertyValue,
-  SelectPropertyValue,
-  Block,
-} from "@notionhq/client/build/src/api-types"
+import type { Root } from "hast";
 
-export interface PostItem {
-  Page: TitlePropertyValue
-  Slug: RichTextPropertyValue
-  Published: CheckboxPropertyValue
-  Featured: CheckboxPropertyValue
-  Date: DatePropertyValue
-  Authors: { people: PersonUser[] }
-  Image: URLPropertyValue
-  FeaturedImage: URLPropertyValue
-  Description: RichTextPropertyValue
-  Category: SelectPropertyValue
+/**
+ * - `draft` : jamais généré en production, consultable en `yarn dev`
+ * - `unlisted` : page générée mais absente des listes, du RSS et du sitemap
+ * - `published` : visible partout
+ */
+export type PostStatus = "draft" | "unlisted" | "published";
+
+export interface Author {
+  name: string;
+  avatar: string | null;
 }
 
-export interface PostProps extends Omit<Page, "properties"> {
-  properties: PostItem
+export interface Post {
+  slug: string;
+  title: string;
+  date: string;
+  description: string;
+  category: string | null;
+  author: Author | null;
+  status: PostStatus;
+  featured: boolean;
+  featuredImage: string | null;
 }
 
-export interface ListBlock {
-  id: string
-  type: string
-  items: Block[]
+export interface PostWithContent extends Post {
+  content: Root;
 }

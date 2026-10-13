@@ -1,9 +1,9 @@
-import { NotionText } from "@components/NotionText";
 import Page from "@layouts/Page";
 import { SITE_NAME } from "@lib/site";
-import { PostProps } from "@lib/types";
+import { Post } from "@lib/types";
 import dayjs from "dayjs";
 import React, { useMemo } from "react";
+import { AuthorAvatar } from "../components/AuthorAvatar";
 import { BottomCTA } from "../components/BottomCTA";
 import { ContinueReading } from "../components/ContinueReading";
 import { Divider } from "../components/Divider";
@@ -11,49 +11,48 @@ import { useOgImage } from "../hooks/useOGImage";
 import { cn } from "../utils";
 
 export interface Props {
-  post: PostProps;
-  relatedPosts: PostProps[];
+  post: Post;
+  relatedPosts: Post[];
   children?: React.ReactNode;
 }
 
 export const PostPage: React.FC<Props> = ({ post, relatedPosts, children }) => {
   const formattedDate = useMemo(
-    () => dayjs(post.properties.Date.date.start).format("DD/MM/YYYY"),
-    [post.properties.Date.date.start]
+    () => dayjs(post.date).format("DD/MM/YYYY"),
+    [post.date]
   );
 
-  const author = post.properties.Authors.people[0];
-  const plainTitle = post.properties.Page.title[0].plain_text;
-  const slug = post.properties.Slug.rich_text[0].plain_text;
+  const { author, category, description, slug, title } = post;
 
   const ogImage = useOgImage({
-    title: plainTitle,
+    title,
     authorName: author?.name,
   });
-
-  const authorExists = author != null && author.name != null;
-
-  const category = post.properties.Category?.select?.name;
-  const description =
-    post.properties.Description.rich_text[0]?.plain_text ?? "";
 
   return (
     <Page
       seo={{
-        title: `${plainTitle} | ${SITE_NAME}`,
+        title: `${title} | ${SITE_NAME}`,
         description,
         image: ogImage,
         canonicalPath: `/p/${slug}`,
+        noindex: post.status !== "published",
         openGraph: {
           type: "article",
           article: {
-            publishedTime: post.properties.Date.date.start,
-            ...(authorExists ? { authors: [author.name] } : {}),
+            publishedTime: post.date,
+            ...(author != null ? { authors: [author.name] } : {}),
             ...(category != null ? { section: category } : {}),
           },
         },
       }}
     >
+      {post.status === "draft" && (
+        <div className="sticky top-0 z-50 bg-yellow-100 text-yellow-900 text-center text-sm font-medium py-2">
+          Brouillon : cet article n’est pas publié en production.
+        </div>
+      )}
+
       <div className="mt-10 mb-5 px-5 md:px-8 mx-auto">
         <article
           className={cn(
@@ -64,27 +63,23 @@ export const PostPage: React.FC<Props> = ({ post, relatedPosts, children }) => {
           )}
         >
           <div className="flex items-center text-gray-500 space-x-3">
-            {authorExists && (
+            {author != null && (
               <>
                 <div className="flex items-center space-x-3">
-                  <img
-                    src={author?.avatar_url}
-                    alt={`Avatar of ${author?.name}`}
-                    className="w-6 h-6 rounded-full overflow-hidden"
-                  />
-                  <span>{author?.name}</span>
+                  <AuthorAvatar author={author} />
+                  <span>{author.name}</span>
                 </div>
                 <Divider />
               </>
             )}
-            <time dateTime={post.properties.Date.date.start}>
+            <time dateTime={post.date}>
               {formattedDate}
             </time>
           </div>
 
           <header className="mt-5 mb-16 max-w-[800px]">
             <h1 className="text-huge font-bold">
-              <NotionText text={post.properties.Page.title} />
+              {title}
             </h1>
           </header>
 

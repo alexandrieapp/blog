@@ -1,26 +1,21 @@
 import { getServerSideSitemap } from "next-sitemap";
 import { GetServerSideProps } from "next";
 
-import { getDatabase, getBlogLink } from "@lib/notion";
-
-const ROOT_URL = "https://blog.alexandrie.app";
+import { getListedPosts } from "@lib/posts";
+import { getPostLink, SITE_URL } from "@lib/site";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const posts = await getDatabase(process.env.POSTS_TABLE_ID);
-
-  const paths = posts.map((post) => {
-    return {
-      loc: ROOT_URL + getBlogLink(post.properties.Slug.rich_text[0].plain_text),
-      lastmod: new Date().toISOString(),
-    };
-  });
+  const posts = getListedPosts();
 
   const fields = [
     {
-      loc: ROOT_URL,
-      lastmod: new Date().toISOString(),
+      loc: SITE_URL,
+      lastmod: posts[0] != null ? new Date(posts[0].date).toISOString() : undefined,
     },
-    ...paths,
+    ...posts.map((post) => ({
+      loc: SITE_URL + getPostLink(post.slug),
+      lastmod: new Date(post.date).toISOString(),
+    })),
   ];
 
   return getServerSideSitemap(ctx, fields);

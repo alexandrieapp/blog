@@ -1,38 +1,30 @@
 import { Feed } from "feed"
 import { writeFileSync } from "fs"
 
-import { PostProps } from "@lib/types"
+import { getPostLink, SITE_NAME, SITE_URL } from "@lib/site"
+import { Post } from "@lib/types"
 
-export const generateRssFeed = (posts: PostProps[]) => {
-  const baseUrl = "https://blog.railway.app"
-  const author = {
-    name: "Railway",
-    email: "contact@railway.app",
-    link: "https://twitter.com/Railway",
-  }
-
+export const generateRssFeed = (posts: Post[]) => {
   const feed = new Feed({
-    title: "Railway Blog",
-    description:
-      "A series of posts ranging from deployment tutorials to deep engineering adventures to how the team works and builds Railway.",
-    id: baseUrl,
-    link: baseUrl,
-    language: "en",
+    title: SITE_NAME,
+    description: "Articles et guides de l’équipe Alexandrie.",
+    id: SITE_URL,
+    link: SITE_URL,
+    language: "fr",
     feedLinks: {
-      rss2: `${baseUrl}/rss.xml`,
+      rss2: `${SITE_URL}/rss.xml`,
     },
-    author,
-    copyright: "Copyright © 2022 Railway Corp.",
+    copyright: `© ${new Date().getFullYear()} Alexandrie`,
   })
 
   posts.forEach((post) => {
-    const url = baseUrl + "/p/" + post.properties.Slug.rich_text[0].plain_text
+    const url = SITE_URL + getPostLink(post.slug)
     feed.addItem({
-      title: post.properties.Page.title[0].plain_text,
-      description: post.properties.Description.rich_text[0].plain_text,
+      title: post.title,
+      description: post.description,
       id: url,
       link: url,
-      date: new Date(post.properties.Date.date.start),
+      date: new Date(post.date),
     })
   })
 

@@ -1,113 +1,53 @@
-import { Block } from "@notionhq/client/build/src/api-types";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import ErrorPage from "next/error";
-import { useRouter } from "next/router";
-import { Fragment, useMemo } from "react";
 
 import { PostPage } from "@layouts/PostPage";
-import {
-  getDatabase,
-  groupListBlocks,
-  mapDatabaseItemToPageProps,
-} from "@lib/notion";
-import { ListBlock, PostProps } from "@lib/types";
+import { renderMarkdown } from "@lib/markdown";
+import { getAllPosts, getPostSource } from "@lib/posts";
+import { Post, PostWithContent } from "@lib/types";
 
-import { FullLoading } from "@components/Loading";
-import { RenderBlock } from "@components/RenderBlock";
-import { NotionListBlock } from "../../components/ListBlock";
+import { PostContent } from "@components/PostContent";
 
 export interface Props {
-  page: PostProps;
-  relatedPosts: PostProps[];
-  blocks: Block[];
+  post: PostWithContent;
+  relatedPosts: Post[];
 }
 
-const Post: NextPage<Props> = ({ page, relatedPosts, ...props }) => {
-  const router = useRouter();
+const PostRoute: NextPage<Props> = ({ post, relatedPosts }) => (
+  <PostPage post={post} relatedPosts={relatedPosts}>
+    <PostContent content={post.content} />
+  </PostPage>
+);
 
-  // Group all list items together so we can group in a <ul />
-  const blocks = useMemo(() => groupListBlocks(props.blocks), [props.blocks]);
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: getAllPosts().map((p) => ({ params: { slug: p.slug } })),
+  fallback: false,
+});
 
-  if (!router.isFallback && page == null) {
-    return <ErrorPage statusCode={404} />;
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const source = getPostSource(params?.slug as string);
+  if (source == null) {
+    return { notFound: true };
   }
 
-  if (router.isFallback) {
-    return <FullLoading />;
-  }
+  const { post, body, dir } = source;
+  const relatedPosts =
+    post.category != null
+      ? getAllPosts()
+          .filter(
+            (p) =>
+              p.slug !== post.slug &&
+              p.category === post.category &&
+              p.status === "published"
+          )
+          .slice(0, 2)
+      : [];
 
-  return (
-    <PostPage post={page} relatedPosts={relatedPosts}>
-      {blocks.map((block) => {
-        if ((block as ListBlock).items != null) {
-          return <NotionListBlock key={block.id} block={block as ListBlock} />;
-        }
-
-        return (
-          <Fragment key={block.id}>
-            <RenderBlock block={block as Block} />
-          </Fragment>
-        );
-      })}
-    </PostPage>
-  );
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: true,
-  };
-};
-
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  if (process.env.POSTS_TABLE_ID == null) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const { params } = context;
-  if (params == null) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const posts = await getDatabase(process.env.POSTS_TABLE_ID, {
-    includeUnpublished: true,
-  });
-  const slug = params.slug as string;
-  const post = posts.find((post) => {
-    return post.properties.Slug.rich_text[0].plain_text === slug;
-  });
-
-  const category = post?.properties.Category?.select?.name;
-  const relatedPosts = (
-    category != null
-      ? posts.filter(
-          (post) =>
-            post.properties.Slug.rich_text[0].plain_text !== slug &&
-            post.properties.Category?.select?.name === category &&
-            post.properties.Published?.checkbox === true
-        )
-      : []
-  ).slice(0, 2);
-
-  if (post == null) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const props = await mapDatabaseItemToPageProps(post.id);
   return {
     props: {
-      ...props,
+      post: { ...post, content: await renderMarkdown(body, dir) },
       relatedPosts,
     },
-    revalidate: 1,
   };
 };
 
-export default Post;
+export default PostRoute;

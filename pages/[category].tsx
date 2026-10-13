@@ -1,7 +1,7 @@
 import Page from "@layouts/Page"
 import { SITE_NAME } from "@lib/site"
-import { getDatabase } from "@lib/notion"
-import { PostProps } from "@lib/types"
+import { getListedPosts } from "@lib/posts"
+import { Post } from "@lib/types"
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { PostList } from "../components/PostList"
 import { CATEGORIES } from "../constants"
@@ -10,7 +10,7 @@ const categoryLabel = (slug: string) =>
   slug.length > 0 ? slug.charAt(0).toUpperCase() + slug.slice(1) : slug
 
 export interface Props {
-  posts: PostProps[]
+  posts: Post[]
   category?: string
 }
 
@@ -33,32 +33,24 @@ const CategoryPage: NextPage<Props> = ({ posts = [], category }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async (props) => {
-  if (process.env.POSTS_TABLE_ID == null) {
-    return {
-      notFound: true,
-    }
-  }
-
+export const getStaticProps: GetStaticProps<Props> = async (props) => {
   const category = props.params?.category as string
 
   // Special case for "Guides"
-  const posts = (await getDatabase(process.env.POSTS_TABLE_ID)).filter(
+  const posts = getListedPosts().filter(
     (p) =>
-      p.properties.Category.select?.name?.toLowerCase() ===
-      (category === "guides" ? "guide" : category)
+      p.category?.toLowerCase() === (category === "guides" ? "guide" : category)
   )
 
   return {
     props: { posts, category },
-    revalidate: 900, // 15 minutes
   }
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {
-    paths: CATEGORIES.map((c) => `/${c}`),
-    fallback: true,
+    paths: CATEGORIES.map((c) => `/${c.toLowerCase()}`),
+    fallback: false,
   }
 }
 
