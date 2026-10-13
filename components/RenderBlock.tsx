@@ -56,10 +56,10 @@ export const RenderBlock: React.FC<Props> = ({ block }) => {
     case "callout": {
       return (
         <div className="flex w-full p-4 my-8 rounded border border-transparent bg-blue-100">
-          {value.icon.emoji && (
-            <div className="text-yellow-500">{value.icon.emoji}</div>
+          {value.icon?.emoji && (
+            <div className="mr-4 text-yellow-500">{value.icon.emoji}</div>
           )}
-          <div className="ml-4 text-foreground">
+          <div className="text-foreground">
             <NotionText text={value.text} />
           </div>
         </div>
