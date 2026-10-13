@@ -17,7 +17,7 @@ Au moment de créer, reprendre ou rééquiper une librairie, la question revient
 
 > **Transparence :** cet article est rédigé par l’équipe d’Alexandrie, l’une des solutions présentées. Les tarifs des autres éditeurs sont des ordres de grandeur, à confirmer auprès de chacun.
 
-#### Les critères qui comptent
+## Les critères qui comptent
 
 - **Le coût d’entrée.** Licence, installation, formation, reprise des données : avec les logiciels traditionnels, le devis atteint souvent plusieurs milliers d’euros avant le premier mois d’abonnement.
 - **L’abonnement.** Regardez ce qu’il inclut et si la tarification se fait au poste.
@@ -35,7 +35,7 @@ Tite-Live est l’une des solutions les plus répandues en librairie, en France,
 - **À prendre en compte :** une ergonomie jugée datée par une partie des utilisateurs, une ouverture limitée vers les outils tiers et un tarif haut de gamme indexé sur le chiffre d’affaires.
 - **Pour qui ?** Les librairies établies, avec le budget correspondant.
 
-## Librisoft,  l’efficacité sans fioritures
+## Librisoft, l’efficacité sans fioritures
 
 ![Une commande dans l’interface Librisoft](./screenshot-2026-10-08-at-15-04-26.png)
 
@@ -45,7 +45,7 @@ Développé par 2DCOM, Librisoft couvre l’essentiel du métier avec un fonctio
 - **À prendre en compte :** un logiciel Windows tarifé au poste, une mobilité limitée, une vente en ligne liée à la solution de l’éditeur et une formation payante.
 - **Pour qui ?** Les librairies qui recherchent un outil classique sur poste.
 
-## **Bookshop, l’exhaustivité**
+## Bookshop, l’exhaustivité
 
 Conçu par CDI pour la librairie Mollat, Bookshop s’est ensuite ouvert à d’autres établissements.
 
@@ -80,7 +80,7 @@ Lancé en 2023, Alexandrie est un logiciel de gestion de librairie conçu dès l
 
 **Pour qui ?** Les librairies qui veulent un outil moderne, utilisable partout, sans immobiliser leur trésorerie dans une installation.
 
-### Tableau comparatif
+## Tableau comparatif
 
 :::table{highlight="Alexandrie"}
 |  | Alexandrie | Tite-Live | Librisoft | Bookshop |
@@ -92,7 +92,7 @@ Lancé en 2023, Alexandrie est un logiciel de gestion de librairie conçu dès l
 | Abonnement | 100 € HT (50 € HT pour les associations) + Shopify | Élevé | Modéré | Élevé |
 :::
 
-### Questions fréquentes
+## Questions fréquentes
 
 **→ Combien coûte un logiciel de gestion de librairie ?**
 
