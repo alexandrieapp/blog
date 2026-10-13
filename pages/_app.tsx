@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import "@components/Amplitude";
 import { transformThemeToCustomProperties } from "theme-custom-properties";
 import { colorThemes, defaultColorMode } from "../styles/theme";
+import { Inter } from "@next/font/google";
 import localFont from "@next/font/local";
 
 // Fichiers variables (graisses 100 à 1000) : @next/font/google ne propose que 400, 500 et 700 pour DM Sans.
@@ -24,6 +25,9 @@ const dmSans = localFont({
   ],
   display: "swap",
 });
+
+// Police du texte des articles, plus lisible en lecture longue que DM Sans.
+const inter = Inter({ subsets: ["latin"] });
 
 const AlexandrieBlog = ({ Component, pageProps }: AppProps) => {
   const { bodyCSS } = useMemo(
@@ -44,11 +48,7 @@ const AlexandrieBlog = ({ Component, pageProps }: AppProps) => {
     >
       <Head>
         <style>{bodyCSS}</style>
-        <style jsx global>{`
-          html {
-            font-family: ${dmSans.style.fontFamily};
-          }
-        `}</style>
+        <style>{`:root { --font-dm-sans: ${dmSans.style.fontFamily}; --font-inter: ${inter.style.fontFamily}; }`}</style>
       </Head>
 
       <Component {...pageProps} />

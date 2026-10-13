@@ -22,8 +22,7 @@ const customColors = {
   red: generateColorShades("red"),
 }
 
-const fontStack = [
-  "DM Sans",
+const systemStack = [
   "-apple-system",
   "BlinkMacSystemFont",
   "Segoe UI",
@@ -36,7 +35,10 @@ const fontStack = [
   "Apple Color Emoji",
   "Segoe UI Emoji",
   "Segoe UI Symbol",
-].join(",")
+]
+
+const fontStack = ["var(--font-dm-sans)", ...systemStack].join(",")
+const contentStack = ["var(--font-inter)", ...systemStack].join(",")
 
 const monoStack = [
   "ui-monospace",
@@ -58,6 +60,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: fontStack,
+      content: contentStack,
       mono: monoStack,
     },
     extend: {
