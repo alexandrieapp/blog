@@ -62,23 +62,23 @@ export const PostPage: React.FC<Props> = ({ post, relatedPosts, children }) => {
               : "pb-12"
           )}
         >
-          <div className="flex items-center justify-center text-gray-500 space-x-3">
-            {author != null && (
-              <>
-                <div className="flex items-center space-x-3">
-                  <AuthorAvatar author={author} />
-                  <span>{author.name}</span>
-                </div>
-                <Divider />
-              </>
-            )}
-            <time dateTime={post.date}>{formattedDate}</time>
-          </div>
-
-          <header className="mt-5 mb-16 max-w-[800px] mx-auto text-center">
+          <header className="max-w-[736px] mx-auto mb-16">
             <h1 className="text-[clamp(36px,4.5vw,48px)] leading-[1.15] tracking-[-0.02em] font-bold text-balance">
               {title}
             </h1>
+
+            <div className="flex items-center mt-5 text-gray-500 space-x-3">
+              {author != null && (
+                <>
+                  <div className="flex items-center space-x-3">
+                    <AuthorAvatar author={author} />
+                    <span>{author.name}</span>
+                  </div>
+                  <Divider />
+                </>
+              )}
+              <time dateTime={post.date}>{formattedDate}</time>
+            </div>
           </header>
 
           <section className="max-w-[736px] mx-auto font-content text-base sm:text-lg leading-8">
