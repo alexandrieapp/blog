@@ -6,9 +6,9 @@ import { useMemo } from "react";
 import "@components/Amplitude";
 import { transformThemeToCustomProperties } from "theme-custom-properties";
 import { colorThemes, defaultColorMode } from "../styles/theme";
-import { Inter } from "@next/font/google";
+import { DM_Sans } from "@next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const dmSans = DM_Sans({ weight: ["400", "500", "700"], subsets: ["latin"] });
 
 const AlexandrieBlog = ({ Component, pageProps }: AppProps) => {
   const { bodyCSS } = useMemo(
@@ -31,7 +31,7 @@ const AlexandrieBlog = ({ Component, pageProps }: AppProps) => {
         <style>{bodyCSS}</style>
         <style jsx global>{`
           html {
-            font-family: ${inter.style.fontFamily};
+            font-family: ${dmSans.style.fontFamily};
           }
         `}</style>
       </Head>
