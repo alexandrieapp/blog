@@ -55,7 +55,7 @@ Conçu par CDI pour la librairie Mollat, Bookshop s’est ensuite ouvert à d’
 
 ## Alexandrie, la librairie qui s’ouvre partout
 
-![Une commande dans Alexandrie](./screenshot-2026-10-13-at-15-06-44.png)
+![Une commande dans Alexandrie](./commande-alexandrie.png)
 
 Lancé en 2023, Alexandrie est un logiciel de gestion de librairie conçu dès le départ pour le web.
 
