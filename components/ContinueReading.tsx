@@ -17,7 +17,7 @@ export const ContinueReading: React.FC<{
   return (
     <div>
       <header className={cn("flex items-center justify-between mb-8")}>
-        <h3 className="text-gray-500 font-semibold text-lg">
+        <h3 className="text-gray-600 font-semibold text-lg">
           Continuer à lire...
         </h3>
         <Link
@@ -53,9 +53,7 @@ const RelatedPostItem: React.FC<{ post: Post }> = ({ post }) => {
       {category != null && <PostCategory category={category} />}
 
       <div className="flex-grow">
-        <header className="font-bold text-lg mt-2 mb-1">
-          {post.title}
-        </header>
+        <header className="font-bold text-lg mt-2 mb-1">{post.title}</header>
 
         <p className="text-base text-gray-800 line-clamp-2">
           {post.description}
@@ -66,13 +64,13 @@ const RelatedPostItem: React.FC<{ post: Post }> = ({ post }) => {
         {author != null && (
           <>
             <AuthorAvatar author={author} />
-            <span className="font-medium text-sm text-gray-500">
+            <span className="font-medium text-sm text-gray-600">
               {author.name}
             </span>
             <Divider />
           </>
         )}
-        <span className="font-medium text-sm text-gray-500">
+        <span className="font-medium text-sm text-gray-600">
           {formattedDate}
         </span>
       </div>

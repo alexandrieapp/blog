@@ -5,7 +5,7 @@ description: Vous vous demandez encore si c’est une bonne opportunité de vous
 category: Articles
 author: jo
 status: published
-featured: true
+featured: false
 featuredImage: ./cover.png
 ---
 

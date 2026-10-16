@@ -75,9 +75,10 @@ const readPostFile = (
   }
 
   // gray-matter convertit les dates YAML en objets Date
-  const date = required(file, data, "date");
-  const isoDate =
-    date instanceof Date ? date.toISOString().slice(0, 10) : String(date);
+  const toIsoDate = (value: unknown) =>
+    value instanceof Date ? value.toISOString().slice(0, 10) : String(value);
+  const isoDate = toIsoDate(required(file, data, "date"));
+  const updated = data.updated != null ? toIsoDate(data.updated) : null;
 
   return {
     dir,
@@ -86,6 +87,7 @@ const readPostFile = (
       slug: (data.slug as string | undefined) ?? dir,
       title: required(file, data, "title") as string,
       date: isoDate,
+      updated,
       description: required(file, data, "description") as string,
       category: (data.category as string | undefined) ?? null,
       author: authorKey != null ? authors[authorKey] : null,

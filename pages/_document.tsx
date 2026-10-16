@@ -6,6 +6,12 @@ export default function Document() {
       <Head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Alexandrie Blog"
+          href="/rss.xml"
+        />
       </Head>
 
       <body>

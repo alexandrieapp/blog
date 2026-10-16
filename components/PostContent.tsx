@@ -21,6 +21,7 @@ const PostImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
         src={src}
         alt={alt}
         fill
+        sizes="(max-width: 768px) 100vw, 736px"
         className="nextImage p-0 rounded overflow-hidden"
         unoptimized={process.env.NODE_ENV !== "production"}
       />

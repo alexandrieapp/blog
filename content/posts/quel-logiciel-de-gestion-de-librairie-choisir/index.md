@@ -9,10 +9,6 @@ featured: true
 featuredImage: ./cover.png
 ---
 
-*Au moment de créer ou reprendre une librairie, vous vous posez sans doute la question : quel est le meilleur logiciel de gestion de librairie ? (mise à jour 2026)*
-
----
-
 Au moment de créer, reprendre ou rééquiper une librairie, la question revient toujours : quel logiciel de gestion choisir ? L’offre spécialisée est restreinte, et chaque solution répond à un profil différent.
 
 > **Transparence :** cet article est rédigé par l’équipe d’Alexandrie, l’une des solutions présentées. Les tarifs des autres éditeurs sont des ordres de grandeur, à confirmer auprès de chacun.
@@ -27,9 +23,9 @@ Au moment de créer, reprendre ou rééquiper une librairie, la question revient
 
 ## Tite-Live, le leader historique
 
-![Un aperçu de l’interface de Tite-Live](./untitled.png)
+![Un aperçu de l’interface de Tite-Live](./tite-live-interface.png)
 
-Tite-Live est l’une des solutions les plus répandues en librairie, en France, en Belgique et aux Pays-Bas.
+[Tite-Live](https://www.titelive.com) est l’une des solutions les plus répandues en librairie, en France, en Belgique et aux Pays-Bas.
 
 - **Points forts :** un logiciel tout-en-un, avec une base bibliographique intégrée. C’est une solution éprouvée pour les gros volumes.
 - **À prendre en compte :** une ergonomie jugée datée par une partie des utilisateurs, une ouverture limitée vers les outils tiers et un tarif haut de gamme indexé sur le chiffre d’affaires.
@@ -37,9 +33,9 @@ Tite-Live est l’une des solutions les plus répandues en librairie, en France,
 
 ## Librisoft, l’efficacité sans fioritures
 
-![Une commande dans l’interface Librisoft](./screenshot-2026-10-08-at-15-04-26.png)
+![Une commande dans l’interface Librisoft](./librisoft-commande.png)
 
-Développé par 2DCOM, Librisoft couvre l’essentiel du métier avec un fonctionnement simple. Il s’appuie sur le FEL pour la base bibliographique.
+Développé par [2DCOM](https://www.2dcom.fr), Librisoft couvre l’essentiel du métier avec un fonctionnement simple. Il s’appuie sur le FEL pour la base bibliographique.
 
 - **Points forts :** un outil efficace sur les commandes clients et les rapports de ventes, avec un abonnement accessible.
 - **À prendre en compte :** un logiciel Windows tarifé au poste, une mobilité limitée, une vente en ligne liée à la solution de l’éditeur et une formation payante.
@@ -57,7 +53,7 @@ Conçu par CDI pour la librairie Mollat, Bookshop s’est ensuite ouvert à d’
 
 ![Une commande dans Alexandrie](./commande-alexandrie.png)
 
-Lancé en 2023, Alexandrie est un logiciel de gestion de librairie conçu dès le départ pour le web.
+Lancé en 2023, [Alexandrie](https://alexandrie.app) est un logiciel de gestion de librairie conçu dès le départ pour le web.
 
 **Accessible partout, nativement.** Il suffit d’un navigateur, sur ordinateur, tablette ou téléphone. Pas de poste maître, pas de bureau à distance, aucun bricolage pour travailler depuis la réserve, chez soi ou sur un salon.
 
@@ -65,7 +61,7 @@ Lancé en 2023, Alexandrie est un logiciel de gestion de librairie conçu dès l
 
 **Une caisse nomade.** La caisse certifiée NF525 tourne sur un téléphone ou une tablette, sans PC. Elle s’emporte partout et fonctionne hors ligne : salon, dédicace, marché, vente hors les murs.
 
-**La puissance de Shopify pour vendre.** Vous vendez en boutique, sur votre site, sur les réseaux sociaux, et auprès des collectivités grâce à un site B2B dédié, avec un seul stock pour tout.
+**La puissance de Shopify pour vendre.** Vous vendez en boutique, sur votre site, sur les réseaux sociaux, et auprès des collectivités grâce à un site B2B dédié, avec un seul stock pour tout. Si vous hésitez encore à vendre en ligne, [cet article pèse les avantages et les obstacles](/p/librairie-et-vente-en-ligne).
 
 **La précision d’Alexandrie pour acheter.** Alexandrie gère le cœur de votre métier :
 
@@ -74,7 +70,7 @@ Lancé en 2023, Alexandrie est un logiciel de gestion de librairie conçu dès l
 - réceptions à partir des avis d’expédition ;
 - statistiques.
 
-**Un tarif simple.** 100 € HT par mois pour une entreprise, 50 € HT par mois pour une association, plus l’abonnement Shopify. C’est le tarif le plus compétitif du marché. Il n’y a ni licence, ni installation, ni formation facturée.
+**Un tarif simple.** [100 € HT par mois pour une entreprise, 50 € HT par mois pour une association](https://alexandrie.app/#pricing), plus l’abonnement Shopify. C’est le tarif le plus compétitif du marché. Il n’y a ni licence, ni installation, ni formation facturée.
 
 **Un accompagnement gratuit.** La mise en route et la migration de vos données sont offertes.
 
@@ -94,14 +90,14 @@ Lancé en 2023, Alexandrie est un logiciel de gestion de librairie conçu dès l
 
 ## Questions fréquentes
 
-**→ Combien coûte un logiciel de gestion de librairie ?**
+### Combien coûte un logiciel de gestion de librairie ?
 
 Additionnez le coût d’entrée, qui peut atteindre plusieurs milliers d’euros, et l’abonnement, qui va d’environ 100 € à plus de 400 € par mois selon la solution.
 
-**→ Peut-on changer de logiciel en cours d’activité ?**
+### Peut-on changer de logiciel en cours d’activité ?
 
-Oui, de préférence hors période de forte activité. Vérifiez qui prend en charge la reprise de vos données. Chez Alexandrie, elle est offerte.
+Oui, de préférence hors période de forte activité. Vérifiez qui prend en charge la reprise de vos données. Chez Alexandrie, elle est offerte. Les points de vigilance d’une migration sont détaillés dans [Est-ce facile de changer de logiciel de librairie ?](/p/changer-logiciel-de-gestion-de-librairie)
 
-**→ Faut-il un ordinateur pour encaisser ?**
+### Faut-il un ordinateur pour encaisser ?
 
 Pas nécessairement. Une caisse certifiée NF525 peut fonctionner sur tablette ou téléphone, y compris hors ligne.

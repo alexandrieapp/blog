@@ -8,7 +8,10 @@ import { AuthorAvatar } from "./AuthorAvatar";
 import { PostCategory } from "./PostCategory";
 import Image from "next/image";
 
-export const FeaturedPostItem: React.FC<{ post: Post }> = ({ post }) => {
+export const FeaturedPostItem: React.FC<{ post: Post; priority?: boolean }> = ({
+  post,
+  priority = false,
+}) => {
   const formattedDate = useMemo(
     () => dayjs(post.date).format("DD/MM/YYYY"),
     [post.date]
@@ -23,7 +26,8 @@ export const FeaturedPostItem: React.FC<{ post: Post }> = ({ post }) => {
           <Image
             src={featuredImage}
             fill
-            priority
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
             alt={post.title}
             className="object-cover transition-transform group-hover:scale-[1.05]"
           />
@@ -45,13 +49,13 @@ export const FeaturedPostItem: React.FC<{ post: Post }> = ({ post }) => {
           {author != null && (
             <>
               <AuthorAvatar author={author} />
-              <span className="font-medium text-sm text-gray-500">
+              <span className="font-medium text-sm text-gray-600">
                 {author.name}
               </span>
               <Divider />
             </>
           )}
-          <span className="font-medium text-sm text-gray-500">
+          <span className="font-medium text-sm text-gray-600">
             {formattedDate}
           </span>
         </div>

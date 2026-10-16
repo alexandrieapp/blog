@@ -3,7 +3,7 @@ import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useMemo } from "react";
-import "@components/Amplitude";
+import { Amplitude } from "@components/Amplitude";
 import { transformThemeToCustomProperties } from "theme-custom-properties";
 import { colorThemes, defaultColorMode } from "../styles/theme";
 import { Inter } from "@next/font/google";
@@ -52,6 +52,7 @@ const AlexandrieBlog = ({ Component, pageProps }: AppProps) => {
       </Head>
 
       <Component {...pageProps} />
+      <Amplitude />
     </ThemeProvider>
   );
 };

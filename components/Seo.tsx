@@ -1,8 +1,5 @@
 import { NextSeo, NextSeoProps } from "next-seo";
-import { SITE_NAME, SITE_URL } from "@lib/site";
-
-const defaultDescription =
-  "Articles et guides de l’équipe Alexandrie.";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@lib/site";
 
 const defaultOgImage = `${SITE_URL}/api/og?title=${encodeURIComponent(
   SITE_NAME
@@ -12,7 +9,7 @@ export interface Props extends NextSeoProps {
   title?: string;
   description?: string;
   image?: string;
-  /** Path only, e.g. `/p/my-post` or `/Guides` */
+  /** Path only, e.g. `/p/my-post` or `/guides` */
   canonicalPath?: string;
 }
 
@@ -24,7 +21,7 @@ const SEO: React.FC<Props> = ({
   openGraph: openGraphProp,
   ...rest
 }) => {
-  const description = descriptionProp ?? defaultDescription;
+  const description = descriptionProp ?? SITE_DESCRIPTION;
   const canonical = canonicalPath
     ? `${SITE_URL}${
         canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`

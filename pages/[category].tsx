@@ -1,57 +1,66 @@
-import Page from "@layouts/Page"
-import { SITE_NAME } from "@lib/site"
-import { getListedPosts } from "@lib/posts"
-import { Post } from "@lib/types"
-import { GetStaticPaths, GetStaticProps, NextPage } from "next"
-import { PostList } from "../components/PostList"
-import { CATEGORIES } from "../constants"
+import Page from "@layouts/Page";
+import { SITE_NAME } from "@lib/site";
+import { getListedPosts } from "@lib/posts";
+import { Post } from "@lib/types";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { PostList } from "../components/PostList";
+import { CATEGORIES } from "../constants";
 
 const categoryLabel = (slug: string) =>
-  slug.length > 0 ? slug.charAt(0).toUpperCase() + slug.slice(1) : slug
+  slug.length > 0 ? slug.charAt(0).toUpperCase() + slug.slice(1) : slug;
+
+const CATEGORY_DESCRIPTIONS: Record<string, string> = {
+  guides:
+    "Guides pas à pas pour gérer votre librairie avec Alexandrie : commandes, réceptions, réassort, import de catalogue et vente en ligne.",
+  articles:
+    "Articles sur le métier de libraire : choisir un logiciel de gestion de librairie, changer d’outil, vendre en ligne.",
+};
 
 export interface Props {
-  posts: Post[]
-  category?: string
+  posts: Post[];
+  category?: string;
 }
 
 const CategoryPage: NextPage<Props> = ({ posts = [], category }) => {
-  const label = category != null ? categoryLabel(category) : null
+  const label = category != null ? categoryLabel(category) : null;
 
   return (
     <Page
       seo={{
         title: label != null ? `${label} | ${SITE_NAME}` : SITE_NAME,
         description:
-          label != null
-            ? `Articles « ${label} » sur le blog Alexandrie.`
-            : "Articles et guides de l’équipe Alexandrie.",
+          category != null ? CATEGORY_DESCRIPTIONS[category] : undefined,
         ...(category != null ? { canonicalPath: `/${category}` } : {}),
       }}
     >
-      <PostList posts={posts} category={category} />
+      <PostList
+        posts={posts}
+        heading={label ?? SITE_NAME}
+        category={category}
+      />
     </Page>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps<Props> = async (props) => {
-  const category = props.params?.category as string
+  const category = props.params?.category as string;
 
   // Special case for "Guides"
   const posts = getListedPosts().filter(
     (p) =>
       p.category?.toLowerCase() === (category === "guides" ? "guide" : category)
-  )
+  );
 
   return {
     props: { posts, category },
-  }
-}
+  };
+};
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: CATEGORIES.map((c) => `/${c.toLowerCase()}`),
     fallback: false,
-  }
-}
+  };
+};
 
-export default CategoryPage
+export default CategoryPage;

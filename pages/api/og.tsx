@@ -1,5 +1,6 @@
 import { ImageResponse } from "@vercel/og";
 import type { NextRequest } from "next/server";
+import { SITE_URL } from "@lib/site";
 
 export const config = {
   runtime: "edge",
@@ -15,10 +16,11 @@ function decodeParam(value: string | null, fallback: string): string {
 }
 
 export default function handler(req: NextRequest) {
-  const { searchParams, origin } = req.nextUrl;
+  const { searchParams } = req.nextUrl;
   const title = decodeParam(searchParams.get("title"), "Alexandrie Blog");
   const author = decodeParam(searchParams.get("author"), "Alexandrie");
-  const logoUrl = `${origin}/logo_full.png`;
+  // L’origine de la requête n’est pas l’URL publique derrière le proxy Railway.
+  const logoUrl = `${SITE_URL}/logo_full.png`;
 
   return new ImageResponse(
     (

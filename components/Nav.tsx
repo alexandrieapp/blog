@@ -31,6 +31,11 @@ const Nav: React.FC = () => {
           {isMounted && (
             <button
               className="hover:text-pink-600"
+              aria-label={
+                theme === "light"
+                  ? "Passer en mode sombre"
+                  : "Passer en mode clair"
+              }
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             >
               {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}

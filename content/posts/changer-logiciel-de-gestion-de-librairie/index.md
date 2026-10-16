@@ -5,7 +5,7 @@ description: Est-ce facile de changer de logiciel de librairie ? Quels sont les 
 category: Articles
 author: jo
 status: published
-featured: true
+featured: false
 featuredImage: ./cover.webp
 ---
 

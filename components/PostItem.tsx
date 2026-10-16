@@ -40,13 +40,13 @@ const PostItem: React.FC<Props> = ({ post }) => {
         {author != null && (
           <>
             <AuthorAvatar author={author} />
-            <span className="font-medium text-sm text-gray-500">
+            <span className="font-medium text-sm text-gray-600">
               {author.name}
             </span>
             <Divider />
           </>
         )}
-        <span className="font-medium text-sm text-gray-500">
+        <span className="font-medium text-sm text-gray-600">
           {formattedDate}
         </span>
       </div>

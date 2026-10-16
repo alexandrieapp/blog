@@ -5,7 +5,7 @@ description: Ajouter un livre à votre catalogue ? Commander un livre pour un cl
 category: Guide
 author: jo
 status: published
-featured: true
+featured: false
 featuredImage: ./cover.png
 ---
 

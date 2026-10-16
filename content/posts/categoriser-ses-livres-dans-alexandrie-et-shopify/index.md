@@ -5,7 +5,7 @@ description: Catégoriser ses livres dans Alexandrie & Shopify
 category: Guide
 author: jo
 status: published
-featured: true
+featured: false
 featuredImage: ./cover.png
 ---
 

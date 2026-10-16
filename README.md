@@ -25,6 +25,7 @@ content/posts/mon-article/
 ---
 title: Gérer les ruptures de stock en librairie
 date: 2025-03-12
+updated: 2025-06-01         # facultatif, date de la dernière mise à jour
 description: Texte d'aperçu affiché dans les listes et les métadonnées.
 category: Guide             # Guide | Articles
 author: jo                  # clé de content/authors.yml

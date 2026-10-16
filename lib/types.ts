@@ -16,6 +16,8 @@ export interface Post {
   slug: string;
   title: string;
   date: string;
+  /** Date de dernière mise à jour éditoriale, si différente de `date`. */
+  updated: string | null;
   description: string;
   category: string | null;
   author: Author | null;

@@ -5,7 +5,7 @@ description: Découvrez comme Alexandrie vous aide à mieux gérer votre réasso
 category: Guide
 author: jo
 status: published
-featured: true
+featured: false
 featuredImage: ./cover.png
 ---
 
