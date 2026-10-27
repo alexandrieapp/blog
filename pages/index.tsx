@@ -1,6 +1,6 @@
 import Page from "@layouts/Page";
 import { ALEXANDRIE_URL, SITE_NAME, SITE_URL } from "@lib/site";
-import { getListedPosts } from "@lib/posts";
+import { getFrontPagePosts } from "@lib/posts";
 import { generateRssFeed } from "@lib/rss";
 import { Post } from "@lib/types";
 import { GetStaticProps, NextPage } from "next";
@@ -33,7 +33,7 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const posts = getListedPosts();
+  const posts = getFrontPagePosts();
 
   generateRssFeed(posts);
 

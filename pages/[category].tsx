@@ -4,7 +4,7 @@ import { getListedPosts } from "@lib/posts";
 import { Post } from "@lib/types";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PostList } from "../components/PostList";
-import { CATEGORIES } from "../constants";
+import { CATEGORY_PAGES, categoryPath } from "../constants";
 
 const categoryLabel = (slug: string) =>
   slug.length > 0 ? slug.charAt(0).toUpperCase() + slug.slice(1) : slug;
@@ -45,10 +45,8 @@ const CategoryPage: NextPage<Props> = ({ posts = [], category }) => {
 export const getStaticProps: GetStaticProps<Props> = async (props) => {
   const category = props.params?.category as string;
 
-  // Special case for "Guides"
   const posts = getListedPosts().filter(
-    (p) =>
-      p.category?.toLowerCase() === (category === "guides" ? "guide" : category)
+    (p) => p.category != null && categoryPath(p.category) === `/${category}`
   );
 
   return {
@@ -58,7 +56,7 @@ export const getStaticProps: GetStaticProps<Props> = async (props) => {
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {
-    paths: CATEGORIES.map((c) => `/${c.toLowerCase()}`),
+    paths: Object.values(CATEGORY_PAGES).map((c) => c.path),
     fallback: false,
   };
 };

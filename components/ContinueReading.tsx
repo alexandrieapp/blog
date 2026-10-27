@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import React, { useMemo } from "react";
+import { categoryLabel, categoryPath } from "../constants";
 import { getPostLink } from "../lib/site";
 import { Post } from "../lib/types";
 import { cn } from "../utils";
@@ -12,8 +13,6 @@ export const ContinueReading: React.FC<{
   posts: Post[];
   category: string;
 }> = ({ posts, category }) => {
-  category = category === "Guide" ? "Guides" : category;
-
   return (
     <div>
       <header className={cn("flex items-center justify-between mb-8")}>
@@ -22,9 +21,9 @@ export const ContinueReading: React.FC<{
         </h3>
         <Link
           className={cn("text-pink-500", "hover:underline")}
-          href={`/${category.toLowerCase()}`}
+          href={categoryPath(category)}
         >
-          Voir tout {category} →
+          Voir tout {categoryLabel(category)} →
         </Link>
       </header>
 

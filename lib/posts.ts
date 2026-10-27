@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { load as loadYaml } from "js-yaml";
 
 import { Author, Post, PostStatus } from "@lib/types";
+import { isListedCategory } from "../constants";
 
 export const CONTENT_DIR = path.join(process.cwd(), "content");
 export const POSTS_DIR = path.join(CONTENT_DIR, "posts");
@@ -86,6 +87,7 @@ const readPostFile = (
     post: {
       slug: (data.slug as string | undefined) ?? dir,
       title: required(file, data, "title") as string,
+      seoTitle: (data.seoTitle as string | undefined) ?? null,
       date: isoDate,
       updated,
       description: required(file, data, "description") as string,
@@ -130,6 +132,10 @@ export const getAllPosts = (): Post[] => readAllPostFiles().map((f) => f.post);
 /** Articles affichés dans les listes, le RSS et le sitemap. */
 export const getListedPosts = (): Post[] =>
   getAllPosts().filter((p) => p.status === "published");
+
+/** Articles de l'accueil et du flux RSS : les catégories masquées en sont absentes. */
+export const getFrontPagePosts = (): Post[] =>
+  getListedPosts().filter((p) => isListedCategory(p.category));
 
 export const getPostSource = (slug: string): PostFile | null =>
   readAllPostFiles().find((f) => f.post.slug === slug) ?? null;

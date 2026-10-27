@@ -2,7 +2,7 @@
 title: Est-ce facile de changer de logiciel de librairie ?
 date: '2024-02-20'
 description: Est-ce facile de changer de logiciel de librairie ? Quels sont les points de vigilance. On vous explique tout dans cet article.
-category: Articles
+category: Article
 author: jo
 status: published
 featured: false

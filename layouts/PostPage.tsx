@@ -10,6 +10,7 @@ import { ContinueReading } from "../components/ContinueReading";
 import { Divider } from "../components/Divider";
 import { useOgImage } from "../hooks/useOGImage";
 import { cn } from "../utils";
+import { categoryLabel, categoryPath } from "../constants";
 
 export interface Props {
   post: Post;
@@ -38,15 +39,15 @@ export const PostPage: React.FC<Props> = ({ post, relatedPosts, children }) => {
   });
 
   const url = `${SITE_URL}/p/${slug}`;
-  const categoryPath =
+  const categoryHref =
     category != null
-      ? `/${(category === "Guide" ? "Guides" : category).toLowerCase()}`
+      ? categoryPath(category)
       : null;
 
   return (
     <Page
       seo={{
-        title: `${title} | Alexandrie`,
+        title: `${post.seoTitle ?? title} | Alexandrie`,
         description,
         image: ogImage,
         canonicalPath: `/p/${slug}`,
@@ -78,16 +79,16 @@ export const PostPage: React.FC<Props> = ({ post, relatedPosts, children }) => {
       <BreadcrumbJsonLd
         itemListElements={[
           { position: 1, name: SITE_NAME, item: SITE_URL },
-          ...(category != null && categoryPath != null
+          ...(category != null && categoryHref != null
             ? [
                 {
                   position: 2,
-                  name: category === "Guide" ? "Guides" : category,
-                  item: `${SITE_URL}${categoryPath}`,
+                  name: categoryLabel(category),
+                  item: `${SITE_URL}${categoryHref}`,
                 },
               ]
             : []),
-          { position: categoryPath != null ? 3 : 2, name: title, item: url },
+          { position: categoryHref != null ? 3 : 2, name: title, item: url },
         ]}
       />
 

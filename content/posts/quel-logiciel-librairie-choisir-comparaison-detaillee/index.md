@@ -2,7 +2,7 @@
 title: Quel logiciel de gestion de librairie choisir ? Une comparaison détaillée
 date: '2025-06-11'
 description: Si vous êtes libraire ou que vous avez suivi une formation, vous devriez retrouver ici des termes familiers.  Voici une plongée en profondeur pour découvrir quel logiciel propose quoi et comment ?
-category: Articles
+category: Article
 author: jo
 status: draft
 featured: true

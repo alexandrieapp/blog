@@ -2,7 +2,7 @@
 title: Librairie et vente en ligne, est-ce une bonne idée ?
 date: '2025-02-12'
 description: Vous vous demandez encore si c’est une bonne opportunité de vous lancer dans la vente en ligne ? Dans cet article, on vous explique les obstacles et les avantages de la vente en ligne.
-category: Articles
+category: Article
 author: jo
 status: published
 featured: false

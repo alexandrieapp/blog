@@ -4,7 +4,7 @@ import React from "react";
 // pink-light, neutre n-75) avec le texte « ink » correspondant.
 const categoryToStyle = {
   Guide: "text-[#07435f] bg-[#d4f2ff]",
-  Articles: "text-[#6e4e0b] bg-[#fff6d5]",
+  Article: "text-[#6e4e0b] bg-[#fff6d5]",
   "User Stories": "text-[#7a2848] bg-[#fadadf]",
 };
 

@@ -13,8 +13,14 @@ export const PostList: React.FC<{
   heading: string;
   category?: string;
 }> = ({ posts, heading, category }) => {
-  const featuredPosts = posts.filter((p) => p.featured);
-  const otherPosts = posts.filter((p) => !p.featured);
+  // Sur l'accueil, les articles mis en avant ouvrent la page en cartes avec
+  // image et les autres suivent en cartes courtes. Sur une page de catégorie,
+  // tous les articles ont la même carte avec image.
+  const isCategoryPage = category != null;
+  const featuredPosts = isCategoryPage
+    ? posts
+    : posts.filter((p) => p.featured);
+  const otherPosts = isCategoryPage ? [] : posts.filter((p) => !p.featured);
 
   const [showMore, setShowMore] = useState(false);
   const hasMorePosts = otherPosts.length > DEFAULT_POSTS_LENGTH;

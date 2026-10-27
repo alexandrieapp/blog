@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 
 import { getListedPosts } from "@lib/posts";
 import { getPostLink, SITE_URL } from "@lib/site";
-import { CATEGORIES } from "../../constants";
+import { CATEGORY_PAGES } from "../../constants";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const posts = getListedPosts();
@@ -15,8 +15,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const fields = [
     { loc: SITE_URL, lastmod: latest },
-    ...CATEGORIES.map((c) => ({
-      loc: `${SITE_URL}/${c.toLowerCase()}`,
+    ...Object.values(CATEGORY_PAGES).map((c) => ({
+      loc: `${SITE_URL}${c.path}`,
       lastmod: latest,
     })),
     ...posts.map((post) => ({

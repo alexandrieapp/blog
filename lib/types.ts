@@ -15,6 +15,8 @@ export interface Author {
 export interface Post {
   slug: string;
   title: string;
+  /** Titre de la balise <title> et d'Open Graph quand il diffère du titre affiché. */
+  seoTitle: string | null;
   date: string;
   /** Date de dernière mise à jour éditoriale, si différente de `date`. */
   updated: string | null;

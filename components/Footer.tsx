@@ -80,11 +80,6 @@ const Footer: React.FC = () => {
                   Blog
                 </Link>
               </li>
-              <li>
-                <Link href="/guides" className={footerLinkClass}>
-                  Guides
-                </Link>
-              </li>
             </ul>
           </div>
 

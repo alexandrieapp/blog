@@ -2,7 +2,7 @@
 title: Quel logiciel de gestion de librairie choisir ?
 date: '2026-10-13'
 description: 'Au moment de créer ou reprendre une librairie, vous vous posez sans doute la question : quel est le meilleur logiciel de gestion de librairie ? On vous dévoile notre comparatif.'
-category: Articles
+category: Article
 author: jo
 status: published
 featured: true

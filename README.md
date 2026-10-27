@@ -24,10 +24,11 @@ content/posts/mon-article/
 ```yaml
 ---
 title: Gérer les ruptures de stock en librairie
+seoTitle: Ruptures de stock en librairie  # facultatif, balise <title> et Open Graph si différent du titre affiché
 date: 2025-03-12
 updated: 2025-06-01         # facultatif, date de la dernière mise à jour
 description: Texte d'aperçu affiché dans les listes et les métadonnées.
-category: Guide             # Guide | Articles
+category: Guide             # Guide | Article
 author: jo                  # clé de content/authors.yml
 status: published           # draft | unlisted | published
 featured: false             # mis en avant en haut de la page d'accueil
