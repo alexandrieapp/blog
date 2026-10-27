@@ -86,7 +86,7 @@ Shopify et Alexandrie reviennent ensemble à environ 130 € par mois, hors mat�
 | Paiement en boutique | 0 € | Avec le TPE de votre banque, Shopify ne prélève rien. |
 | Paiement en ligne | 1,5 % + 0,25 € par transaction | Avec Shopify Payments. |
 | Matériel de caisse | Environ 400 € hors tablette, une fois | Douchette, imprimante de tickets, tiroir-caisse. Un iPad ou un téléphone que vous avez déjà fait l'affaire. |
-| Thème | Gratuit ou payant | Alexandrie propose un thème conçu pour les librairies. |
+| Thème | Gratuit ou payant | Alexandrie propose [un thème conçu pour les librairies](https://shop.alexandrie.app). |
 | Nom de domaine | Environ 15 € par an |  |
 | Logiciel de librairie (Alexandrie) | 100 € HT par mois, 50 € HT pour une association | Migration des données et prise en main incluses, sans frais d'installation. |
 
